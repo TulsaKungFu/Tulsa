@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tulsa Kung Fu — Lineage &amp; Student Chamber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   TOKENS
+========================================================= */
+:root{
+  --obsidian:#0a0b0e;
+  --obsidian-raised:#111318;
+  --obsidian-card:#15171d;
+  --hairline: rgba(212,175,55,0.16);
+  --hairline-strong: rgba(212,175,55,0.32);
+  --gold:#d4af37;
+  --gold-soft: rgba(212,175,55,0.55);
+  --gold-glow: rgba(212,175,55,0.18);
+  --crimson:#8b0000;
+  --crimson-bright:#b3122c;
+  --silk:#efe7d3;
+  --ink:#e9e6dd;
+  --ink-dim:#9b9788;
+  --ink-faint:#615e54;
+  --ok:#5c8a63;
+  --warn:#c99a3f;
+
+  --font-display:'Cinzel', serif;
+  --font-serif:'Cormorant Garamond', serif;
+  --font-ui:'Inter', -apple-system, sans-serif;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(139,0,0,0.10), transparent 60%),
+    radial-gradient(ellipse 900px 600px at 110% 10%, rgba(212,175,55,0.07), transparent 55%),
+    var(--obsidian);
+  color:var(--ink);
+  font-family:var(--font-ui);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;}
+button{font-family:inherit;}
+::selection{background:var(--gold-glow); color:var(--silk);}
+
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(212,175,55,0.25); border-radius:8px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(212,175,55,0.45);}
+
+/* =========================================================
+   TEXTURE / SEAL — signature element
+========================================================= */
+.seal{
+  --size:44px;
+  width:var(--size); height:var(--size);
+  border-radius:50%;
+  position:relative;
+  display:inline-flex; align-items:center; justify-content:center;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255,255,255,0.10), transparent 40%),
+    conic-gradient(from 220deg, var(--crimson-bright), var(--crimson) 40%, #5a0000 70%, var(--crimson-bright));
+  box-shadow:
+    0 0 0 1px rgba(212,175,55,0.55),
+    0 0 0 4px rgba(10,11,14,0.9),
+    0 0 0 5px rgba(212,175,55,0.28),
+    0 6px 18px rgba(0,0,0,0.55);
+  font-family:var(--font-display);
+  color:var(--gold);
+  font-weight:700;
+  flex-shrink:0;
+}
+.seal::before{
+  content:'';
+  position:absolute; inset:5px;
+  border-radius:50%;
+  border:1px dashed rgba(212,175,55,0.45);
+}
+.seal-lg{--size:64px; font-size:22px;}
+.seal-sm{--size:30px; font-size:11px;}
+
+/* =========================================================
+   LAYOUT SHELL
+========================================================= */
+.app{min-height:100vh; display:flex; flex-direction:column;}
+
+.topbar{
+  position:sticky; top:0; z-index:40;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px;
+  padding:14px 28px;
+  background:rgba(10,11,14,0.86);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--hairline);
+}
+.brand{display:flex; align-items:center; gap:12px;}
+.brand-mark{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--hairline-strong);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display); color:var(--gold); font-size:15px; font-weight:700;
+  background:linear-gradient(160deg, rgba(212,175,55,0.10), transparent 60%);
+}
+.brand-text h1{
+  font-family:var(--font-display); font-size:16px; letter-spacing:0.09em;
+  margin:0; color:var(--silk); text-transform:uppercase; font-weight:700;
+}
+.brand-text p{margin:1px 0 0; font-size:10.5px; color:var(--ink-dim); letter-spacing:0.14em; text-transform:uppercase;}
+
+.nav{display:flex; gap:4px; background:var(--obsidian-raised); padding:4px; border-radius:10px; border:1px solid var(--hairline);}
+.nav button{
+  border:none; background:transparent; color:var(--ink-dim);
+  padding:9px 16px; border-radius:7px; cursor:pointer;
+  font-size:12.5px; letter-spacing:0.05em; font-weight:600;
+  transition:all .18s ease;
+  text-transform:uppercase;
+}
+.nav button:hover{color:var(--ink);}
+.nav button.active{
+  color:var(--obsidian);
+  background:linear-gradient(180deg, #e6c65b, var(--gold));
+  box-shadow:0 2px 10px rgba(212,175,55,0.35);
+}
+
+main{flex:1; width:100%; max-width:1280px; margin:0 auto; padding:36px 28px 80px;}
+
+.view{display:none; animation:fadeUp .45s ease both;}
+.view.active{display:block;}
+@keyframes fadeUp{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){ .view{animation:none;} }
+
+.page-head{margin-bottom:32px; text-align:center;}
+.eyebrow{
+  font-family:var(--font-ui); font-size:11px; letter-spacing:0.25em; text-transform:uppercase;
+  color:var(--gold-soft); margin:0 0 10px;
+}
+.page-head h2{
+  font-family:var(--font-display); font-size:clamp(26px,4vw,38px);
+  margin:0; color:var(--silk); font-weight:700; letter-spacing:0.02em;
+}
+.page-head p{
+  font-family:var(--font-serif); font-style:italic; font-size:17px; color:var(--ink-dim);
+  margin:10px auto 0; max-width:560px; line-height:1.5;
+}
+
+.rule{
+  width:120px; height:1px; margin:18px auto 0;
+  background:linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+}
+
+/* =========================================================
+   SASH CHIPS
+========================================================= */
+.sash-dot{width:9px;height:9px;border-radius:50%; display:inline-block; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35);}
+.sash-white{background:#f2f0ea;}
+.sash-yellow{background:#e8c547;}
+.sash-gold{background: linear-gradient(135deg, #f3d576, #b8912e); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35), 0 0 4px rgba(212,175,55,0.5);}
+.sash-orange{background:#dd8a3d;}
+.sash-green{background:#4f8f5c;}
+.sash-blue{background:#3f6fa8;}
+.sash-purple{background:#7d5aa6;}
+.sash-brown{background:#7a5230;}
+.sash-red{background:#a8222c;}
+.sash-black-1, .sash-black-6, .sash-black-9{background:#1c1c1c; box-shadow: inset 0 0 0 1px rgba(212,175,55,0.6);}
+
+.sash-badge{
+  display:inline-flex; align-items:center; gap:7px;
+  padding:5px 12px 5px 8px; border-radius:20px;
+  background:var(--obsidian-raised); border:1px solid var(--hairline-strong);
+  font-size:11.5px; letter-spacing:0.04em; color:var(--ink);
+  font-weight:600; text-transform:uppercase;
+}
+
+/* =========================================================
+   LINEAGE TREE
+========================================================= */
+.lineage-tree{display:flex; flex-direction:column; align-items:center;}
+.gen-block{width:100%; display:flex; flex-direction:column; align-items:center; margin-bottom:4px;}
+.gen-label{
+  font-family:var(--font-display); font-size:12px; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:4px; text-align:center;
+}
+.gen-sub{font-family:var(--font-serif); font-style:italic; font-size:14px; color:var(--ink-faint); margin-bottom:18px;}
+
+.connector{width:1px; height:38px; background:linear-gradient(180deg, var(--gold-soft), rgba(212,175,55,0.05)); position:relative;}
+.connector::after{
+  content:''; position:absolute; bottom:-1px; left:50%; transform:translateX(-50%);
+  width:6px; height:6px; border-radius:50%; background:var(--gold); box-shadow:0 0 8px var(--gold);
+}
+
+.gen-row{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:18px; padding-bottom:34px; width:100%;
+  position:relative;
+}
+
+.lineage-card{
+  width:220px;
+  background:linear-gradient(180deg, var(--obsidian-card), var(--obsidian-raised));
+  border:1px solid var(--hairline); border-radius:14px;
+  padding:20px 16px 18px; text-align:center; cursor:pointer;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  position:relative;
+}
+.lineage-card::before{
+  content:''; position:absolute; inset:0; border-radius:14px; padding:1px;
+  background:linear-gradient(150deg, rgba(212,175,55,0.35), transparent 40%, transparent 70%, rgba(139,0,0,0.35));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  opacity:0; transition:opacity .22s ease; pointer-events:none;
+}
+.lineage-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--hairline-strong);
+  box-shadow:0 14px 34px rgba(0,0,0,0.45), 0 0 0 1px rgba(212,175,55,0.12);
+}
+.lineage-card:hover::before{opacity:1;}
+.lineage-card .seal{margin:0 auto 12px;}
+.lineage-card h3{
+  font-family:var(--font-display); font-size:15px; margin:0 0 4px; color:var(--silk); font-weight:600;
+}
+.lineage-card .role{font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px;}
+.lineage-card .years{font-family:var(--font-serif); font-style:italic; font-size:12.5px; color:var(--ink-faint); margin-bottom:10px;}
+
+/* =========================================================
+   MODAL
+========================================================= */
+.modal-backdrop{
+  position:fixed; inset:0; background:rgba(5,5,7,0.72); backdrop-filter:blur(3px);
+  display:none; align-items:center; justify-content:center; z-index:100; padding:20px;
+}
+.modal-backdrop.open{display:flex;}
+.modal{
+  width:100%; max-width:560px; max-height:86vh; overflow-y:auto;
+  background:linear-gradient(180deg, #16181f, #101116);
+  border:1px solid var(--hairline-strong); border-radius:16px;
+  padding:32px; position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+}
+.modal::before, .modal::after{
+  content:''; position:absolute; left:20px; right:20px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+}
+.modal::before{top:14px;} .modal::after{bottom:14px;}
+.modal-close{
+  position:absolute; top:16px; right:16px; width:30px; height:30px; border-radius:50%;
+  border:1px solid var(--hairline-strong); background:transparent; color:var(--ink-dim);
+  cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center;
+}
+.modal-close:hover{color:var(--gold); border-color:var(--gold-soft);}
+.modal-head{display:flex; gap:16px; align-items:center; margin-bottom:18px;}
+.modal-head h3{font-family:var(--font-display); font-size:21px; margin:0 0 4px; color:var(--silk);}
+.modal-head .role{font-size:12px; color:var(--gold-soft); text-transform:uppercase; letter-spacing:0.06em;}
+.modal-bio{font-family:var(--font-serif); font-size:16.5px; line-height:1.6; color:var(--ink); font-style:italic; margin:16px 0;}
+.modal-field{margin-bottom:14px;}
+.modal-field label{display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:0.12em; color:var(--ink-faint); margin-bottom:5px;}
+.modal-field div.val{font-size:14px; color:var(--ink);}
+.verify-id{
+  font-family:var(--font-ui); font-size:12.5px; letter-spacing:0.03em;
+  background:var(--obsidian); border:1px dashed var(--hairline-strong);
+  padding:8px 12px; border-radius:8px; color:var(--gold); display:inline-block;
+}
+
+/* =========================================================
+   BUTTONS / FORM
+========================================================= */
+.btn{
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer; border:none; border-radius:9px;
+  font-size:12.5px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+  padding:11px 18px; transition:all .18s ease;
+}
+.btn-gold{background:linear-gradient(180deg, #e6c65b, var(--gold)); color:#241c05; box-shadow:0 4px 16px rgba(212,175,55,0.25);}
+.btn-gold:hover{filter:brightness(1.08); transform:translateY(-1px);}
+.btn-ghost{background:transparent; border:1px solid var(--hairline-strong); color:var(--ink);}
+.btn-ghost:hover{border-color:var(--gold-soft); color:var(--gold);}
+.btn-crimson{background:linear-gradient(180deg, #a1121f, var(--crimson-bright)); color:#fff;}
+.input, select.input, textarea.input{
+  width:100%; background:var(--obsidian-raised); border:1px solid var(--hairline);
+  border-radius:9px; padding:11px 14px; color:var(--ink); font-family:var(--font-ui); font-size:13.5px;
+  outline:none; transition:border-color .18s ease;
+}
+.input:focus{border-color:var(--gold-soft); box-shadow:0 0 0 3px var(--gold-glow);}
+textarea.input{resize:vertical; min-height:80px;}
+label.field-label{display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-faint); margin-bottom:6px;}
+
+/* =========================================================
+   ARMORY LAYOUT
+========================================================= */
+.armory-grid{display:grid; grid-template-columns:280px 1fr; gap:26px; align-items:start;}
+@media (max-width:880px){ .armory-grid{grid-template-columns:1fr;} }
+
+.card{
+  background:linear-gradient(180deg, var(--obsidian-card), var(--obsidian-raised));
+  border:1px solid var(--hairline); border-radius:16px; padding:22px;
+}
+
+.student-switch h4{font-family:var(--font-display); font-size:13px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-soft); margin:0 0 14px;}
+.student-portrait{
+  width:88px; height:88px; border-radius:50%; margin:0 auto 14px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:26px; color:var(--gold); font-weight:700;
+  background:radial-gradient(circle at 35% 30%, rgba(212,175,55,0.18), rgba(139,0,0,0.10) 70%);
+  border:1px solid var(--hairline-strong);
+}
+.student-switch .name{font-family:var(--font-display); font-size:17px; text-align:center; color:var(--silk); margin-bottom:6px;}
+.student-switch .status-line{text-align:center; margin-bottom:16px;}
+.status-pill{
+  display:inline-block; font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
+  padding:4px 10px; border-radius:20px; font-weight:700;
+}
+.status-active{background:rgba(92,138,99,0.18); color:#7fbf8a; border:1px solid rgba(92,138,99,0.4);}
+.status-hold{background:rgba(201,154,63,0.18); color:var(--warn); border:1px solid rgba(201,154,63,0.4);}
+
+.select-wrap{margin-bottom:10px;}
+
+.meta-row{display:flex; justify-content:space-between; font-size:12px; padding:8px 0; border-bottom:1px solid var(--hairline);}
+.meta-row:last-child{border-bottom:none;}
+.meta-row span:first-child{color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em; font-size:10.5px;}
+.meta-row span:last-child{color:var(--ink); font-weight:600;}
+
+/* Tabs */
+.tabbar{display:flex; gap:2px; overflow-x:auto; margin-bottom:22px; border-bottom:1px solid var(--hairline); padding-bottom:0;}
+.tabbar button{
+  background:transparent; border:none; color:var(--ink-dim); cursor:pointer;
+  padding:12px 18px; font-size:12px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+  border-bottom:2px solid transparent; white-space:nowrap; transition:all .18s ease;
+}
+.tabbar button:hover{color:var(--ink);}
+.tabbar button.active{color:var(--gold); border-bottom-color:var(--gold);}
+
+.tabpanel{display:none;}
+.tabpanel.active{display:block; animation:fadeUp .3s ease both;}
+
+/* Attributes grid */
+.attr-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-bottom:24px;}
+.attr-card{background:var(--obsidian-raised); border:1px solid var(--hairline); border-radius:12px; padding:16px 18px;}
+.attr-card .top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;}
+.attr-card .top span:first-child{font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-dim); font-weight:700;}
+.attr-card .top span:last-child{font-family:var(--font-display); font-size:17px; color:var(--gold);}
+.bar-track{height:6px; border-radius:6px; background:rgba(255,255,255,0.06); overflow:hidden;}
+.bar-fill{height:100%; border-radius:6px; background:linear-gradient(90deg, var(--crimson-bright), var(--gold)); transition:width .5s ease;}
+
+.notes-block{background:var(--obsidian-raised); border:1px solid var(--hairline); border-radius:12px; padding:18px 20px;}
+.notes-block h4{font-family:var(--font-display); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-soft); margin:0 0 10px;}
+.notes-block p{font-family:var(--font-serif); font-style:italic; font-size:15.5px; line-height:1.6; color:var(--ink); margin:0;}
+
+/* Journal */
+.journal-form{display:grid; grid-template-columns:140px 1fr 140px; gap:10px; margin-bottom:22px;}
+@media (max-width:700px){ .journal-form{grid-template-columns:1fr;} }
+.journal-entry{
+  border-left:2px solid var(--hairline-strong); padding:4px 0 18px 18px; margin-left:6px; position:relative;
+}
+.journal-entry::before{
+  content:''; position:absolute; left:-6px; top:5px; width:10px; height:10px; border-radius:50%;
+  background:var(--gold); box-shadow:0 0 8px var(--gold-glow);
+}
+.journal-entry .jhead{display:flex; gap:10px; align-items:center; margin-bottom:5px; flex-wrap:wrap;}
+.journal-entry .jdate{font-size:11px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em;}
+.jtype{font-size:10px; text-transform:uppercase; letter-spacing:0.06em; padding:2px 9px; border-radius:20px; font-weight:700;}
+.jtype-practice{background:rgba(63,111,168,0.18); color:#7fa8dd;}
+.jtype-feedback{background:rgba(212,175,55,0.16); color:var(--gold);}
+.jtype-milestone{background:rgba(139,0,0,0.22); color:#e37a7a;}
+.journal-entry .jtext{font-size:14px; color:var(--ink); line-height:1.55;}
+.journal-entry .jauthor{font-size:11.5px; color:var(--ink-faint); margin-top:4px;}
+
+/* Curriculum */
+.curric-group{margin-bottom:26px;}
+.curric-group h4{font-family:var(--font-display); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold-soft); margin:0 0 14px;}
+.curric-item{
+  display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px solid var(--hairline);
+}
+.curric-item:last-child{border-bottom:none;}
+.curric-check{
+  width:22px; height:22px; border-radius:6px; border:1px solid var(--hairline-strong);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer; font-size:13px;
+  color:transparent; transition:all .15s ease;
+}
+.curric-check.done{background:linear-gradient(180deg,#e6c65b,var(--gold)); color:#241c05; border-color:transparent;}
+.curric-check.progress{background:rgba(212,175,55,0.18); border-color:var(--gold-soft); color:var(--gold);}
+.curric-name{flex:0 0 190px; font-size:13.5px; color:var(--ink); font-weight:600;}
+.curric-bar{flex:1; min-width:100px;}
+.curric-pct{width:42px; text-align:right; font-size:12px; color:var(--ink-dim); font-variant-numeric:tabular-nums;}
+.curric-status{flex:0 0 100px; text-align:right; font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-faint);}
+
+/* ---- Sash Progression Overview & Accordion ---- */
+.syllabus-overview{
+  display:flex; align-items:center; gap:16px; margin-bottom:26px; padding:16px 20px;
+  background:var(--obsidian-raised); border:1px solid var(--hairline); border-radius:12px; flex-wrap:wrap;
+}
+.syllabus-overview .ov-label{font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-faint); flex:0 0 auto;}
+.syllabus-overview .ov-track{flex:1; min-width:160px;}
+.syllabus-overview .ov-pct{font-family:var(--font-display); font-size:18px; color:var(--gold); flex:0 0 auto;}
+.syllabus-overview .ov-rank{flex:0 0 auto;}
+
+.sash-level{
+  border:1px solid var(--hairline); border-radius:12px; margin-bottom:12px; overflow:hidden;
+  background:var(--obsidian-raised);
+}
+.sash-level.is-current{border-color:var(--gold-soft); box-shadow:0 0 0 1px rgba(212,175,55,0.12);}
+.sash-level.is-locked{opacity:0.5;}
+.sash-level-head{
+  display:flex; align-items:center; gap:14px; padding:16px 18px; cursor:pointer; user-select:none;
+}
+.sash-level-head:hover{background:rgba(212,175,55,0.04);}
+.sash-level.is-locked .sash-level-head{cursor:default;}
+.sash-level-head .chip-dot{width:13px; height:13px; border-radius:50%; flex-shrink:0; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35);}
+.sash-level-head .titles{flex:1; min-width:120px;}
+.sash-level-head .titles h5{
+  font-family:var(--font-display); font-size:14.5px; margin:0; color:var(--silk); font-weight:600;
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+}
+.sash-level-head .titles .focus{font-family:var(--font-serif); font-style:italic; font-size:12.5px; color:var(--ink-faint); margin-top:2px;}
+.sash-level-head .lvl-pct{font-size:12px; color:var(--ink-dim); font-variant-numeric:tabular-nums; flex:0 0 auto;}
+.sash-level-head .lvl-bar{width:80px; flex:0 0 80px;}
+.sash-level-head .chevron{flex:0 0 auto; color:var(--ink-faint); transition:transform .2s ease; font-size:11px;}
+.sash-level.open .chevron{transform:rotate(90deg);}
+.tag-current{font-size:9.5px; text-transform:uppercase; letter-spacing:0.06em; background:rgba(212,175,55,0.18); color:var(--gold); padding:2px 8px; border-radius:20px; font-weight:700;}
+.tag-complete{font-size:9.5px; text-transform:uppercase; letter-spacing:0.06em; background:rgba(92,138,99,0.18); color:#7fbf8a; padding:2px 8px; border-radius:20px; font-weight:700;}
+.tag-locked{font-size:9.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); padding:2px 8px; border-radius:20px; border:1px solid var(--hairline);}
+
+.sash-level-body{display:none; padding:0 18px 18px;}
+.sash-level.open .sash-level-body{display:block;}
+.sash-cat{margin-bottom:16px;}
+.sash-cat:last-child{margin-bottom:0;}
+.sash-cat-name{font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold-soft); margin-bottom:6px; font-weight:700;}
+.test-note{
+  margin-top:6px; padding:10px 14px; border-radius:8px; background:rgba(139,0,0,0.10);
+  border:1px dashed rgba(139,0,0,0.4); font-size:12px; color:#e0a3a3;
+}
+
+/* Exams */
+.exam-card{
+  background:var(--obsidian-raised); border:1px solid var(--hairline); border-radius:12px;
+  padding:18px 20px; margin-bottom:14px;
+}
+.exam-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; flex-wrap:wrap; gap:8px;}
+.exam-title{font-family:var(--font-display); font-size:15px; color:var(--silk);}
+.exam-date{font-size:11.5px; color:var(--ink-faint);}
+.exam-result{font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; padding:4px 10px; border-radius:20px; font-weight:700;}
+.result-pass{background:rgba(92,138,99,0.18); color:#7fbf8a;}
+.result-retest{background:rgba(201,154,63,0.18); color:var(--warn);}
+.exam-notes{font-family:var(--font-serif); font-style:italic; font-size:14.5px; color:var(--ink-dim); line-height:1.5;}
+.exam-examiner{font-size:11.5px; color:var(--ink-faint); margin-top:8px;}
+.retest-note{
+  margin-top:10px; padding:8px 12px; border-radius:8px; background:rgba(212,175,55,0.08);
+  border:1px dashed var(--hairline-strong); font-size:12px; color:var(--gold-soft);
+}
+
+/* Certificates */
+.cert-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px;}
+.cert-card{
+  border-radius:14px; padding:24px 20px; text-align:center; cursor:pointer;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(212,175,55,0.10), transparent 60%),
+    linear-gradient(180deg, var(--obsidian-card), var(--obsidian-raised));
+  border:1px solid var(--hairline-strong); position:relative; transition:transform .2s ease, box-shadow .2s ease;
+}
+.cert-card:hover{transform:translateY(-3px); box-shadow:0 16px 30px rgba(0,0,0,0.4);}
+.cert-card .corner{position:absolute; width:14px; height:14px; border:1px solid var(--gold-soft);}
+.cert-card .corner.tl{top:8px; left:8px; border-right:none; border-bottom:none;}
+.cert-card .corner.tr{top:8px; right:8px; border-left:none; border-bottom:none;}
+.cert-card .corner.bl{bottom:8px; left:8px; border-right:none; border-top:none;}
+.cert-card .corner.br{bottom:8px; right:8px; border-left:none; border-top:none;}
+.cert-card h4{font-family:var(--font-display); font-size:16px; color:var(--silk); margin:14px 0 6px;}
+.cert-card .sub{font-size:11.5px; color:var(--ink-dim); margin-bottom:12px;}
+.cert-card .vid{font-size:10.5px; color:var(--gold-soft); letter-spacing:0.05em;}
+
+.cert-full{text-align:center; padding:10px;}
+.cert-full .frame{
+  border:1px solid var(--gold-soft); border-radius:10px; padding:34px 26px; position:relative;
+  background:radial-gradient(circle at 50% 0%, rgba(212,175,55,0.08), transparent 60%);
+}
+.cert-full .frame::before{content:''; position:absolute; inset:8px; border:1px dashed rgba(212,175,55,0.35); border-radius:6px; pointer-events:none;}
+.cert-full .eyebrow2{font-size:10.5px; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:10px;}
+.cert-full h2{font-family:var(--font-display); font-size:24px; color:var(--silk); margin:0 0 6px;}
+.cert-full .to{font-family:var(--font-serif); font-style:italic; font-size:15px; color:var(--ink-dim); margin-bottom:16px;}
+.cert-full .name-line{font-family:var(--font-display); font-size:22px; color:var(--gold); margin-bottom:18px;}
+.cert-full .desc{font-family:var(--font-serif); font-size:16px; color:var(--ink); line-height:1.6; margin-bottom:20px;}
+.cert-full .sigrow{display:flex; justify-content:space-between; margin-top:26px; gap:20px; flex-wrap:wrap;}
+.sigblock{flex:1; min-width:140px; border-top:1px solid var(--hairline-strong); padding-top:8px; font-size:11.5px; color:var(--ink-faint); text-align:center;}
+.sigblock strong{display:block; font-family:var(--font-display); font-size:13px; color:var(--ink); margin-bottom:2px;}
+
+/* =========================================================
+   VERIFY PAGE
+========================================================= */
+.verify-box{max-width:560px; margin:0 auto;}
+.verify-search{display:flex; gap:10px; margin-bottom:28px;}
+.verify-result{margin-top:20px;}
+.verify-empty{text-align:center; color:var(--ink-faint); font-family:var(--font-serif); font-style:italic; font-size:15px; padding:30px 0;}
+.verify-hint{text-align:center; font-size:11.5px; color:var(--ink-faint); margin-top:10px;}
+.verify-status-row{display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:18px;}
+.verify-status-row .lbl{font-family:var(--font-display); font-size:14px; letter-spacing:0.05em; text-transform:uppercase; color:#7fbf8a;}
+
+/* =========================================================
+   UTIL / EMPTY STATES
+========================================================= */
+.empty-state{text-align:center; padding:30px 10px; color:var(--ink-faint); font-family:var(--font-serif); font-style:italic; font-size:14.5px;}
+.footnote{text-align:center; font-size:11px; color:var(--ink-faint); margin-top:60px; letter-spacing:0.04em;}
+.footnote b{color:var(--gold-soft);}
+
+@media print{
+  body *{visibility:hidden;}
+  #printArea, #printArea *{visibility:visible;}
+  #printArea{position:absolute; top:0; left:0; width:100%;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">虎</div>
+      <div class="brand-text">
+        <h1>Tulsa Kung Fu</h1>
+        <p>Lineage &amp; Student Records</p>
+      </div>
+    </div>
+    <nav class="nav">
+      <button data-view="lineage" class="active">Lineage</button>
+      <button data-view="armory">Chamber</button>
+      <button data-view="verify">Verify</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===================== LINEAGE VIEW ===================== -->
+    <section id="view-lineage" class="view active">
+      <div class="page-head">
+        <p class="eyebrow">世系 · Direct Transmission</p>
+        <h2>The Lineage Tree</h2>
+        <p>From the founding grandmasters to the students training tonight — an unbroken line of transmission, generation to generation.</p>
+        <div class="rule"></div>
+      </div>
+      <div id="lineageTree" class="lineage-tree"></div>
+    </section>
+
+    <!-- ===================== ARMORY VIEW ===================== -->
+    <section id="view-armory" class="view">
+      <div class="page-head">
+        <p class="eyebrow">內堂 · The Inner Hall</p>
+        <h2>The Chamber</h2>
+        <p>Curriculum progress, training chronicle, and examination record.</p>
+        <div class="rule"></div>
+      </div>
+
+      <div class="armory-grid">
+        <!-- Sidebar -->
+        <div class="card student-switch">
+          <div class="student-portrait" id="sw-portrait">—</div>
+          <div class="name" id="sw-name">—</div>
+          <div class="status-line">
+            <span class="sash-badge" id="sw-sash"><span class="sash-dot"></span><span>—</span></span>
+          </div>
+          <div class="status-line"><span class="status-pill" id="sw-status">—</span></div>
+
+          <div class="select-wrap">
+            <label class="field-label">Switch Student</label>
+            <select id="studentSelect" class="input"></select>
+          </div>
+
+          <div style="margin-top:16px;">
+            <div class="meta-row"><span>Student ID</span><span id="sw-id">—</span></div>
+            <div class="meta-row"><span>Enrolled</span><span id="sw-joined">—</span></div>
+            <div class="meta-row"><span>Association Reg.</span><span id="sw-assoc">—</span></div>
+          </div>
+        </div>
+
+        <!-- Main -->
+        <div class="card">
+          <div class="tabbar" id="tabbar">
+            <button data-tab="profile" class="active">Profile &amp; Attributes</button>
+            <button data-tab="journal">Training Chronicle</button>
+            <button data-tab="curriculum">Curriculum Tracker</button>
+            <button data-tab="exams">Examination Archive</button>
+            <button data-tab="written">Written Exams</button>
+            <button data-tab="certs">Certificates</button>
+          </div>
+
+          <!-- Tab 1 -->
+          <div class="tabpanel active" id="tab-profile">
+            <div class="attr-grid" id="attrGrid"></div>
+            <div class="notes-block">
+              <h4>Instructor Notes</h4>
+              <p id="instructorNotes">—</p>
+            </div>
+          </div>
+
+          <!-- Tab 2 -->
+          <div class="tabpanel" id="tab-journal">
+            <div class="journal-form">
+              <select id="journalType" class="input">
+                <option value="practice">Practice</option>
+                <option value="feedback">Sifu Feedback</option>
+                <option value="milestone">Milestone</option>
+              </select>
+              <input id="journalText" class="input" placeholder="Add a training note, feedback, or milestone..." />
+              <button class="btn btn-gold" id="journalAdd">Add Entry</button>
+            </div>
+            <div id="journalList"></div>
+          </div>
+
+          <!-- Tab 3 -->
+          <div class="tabpanel" id="tab-curriculum">
+            <div class="syllabus-overview" id="syllabusOverview"></div>
+            <div id="syllabusAccordion"></div>
+          </div>
+
+          <!-- Tab 4 -->
+          <div class="tabpanel" id="tab-exams">
+            <div id="examList"></div>
+          </div>
+
+          <!-- Tab 4b: Written Exams -->
+          <div class="tabpanel" id="tab-written">
+            <div id="writtenExamList"></div>
+          </div>
+
+          <!-- Tab 5 -->
+          <div class="tabpanel" id="tab-certs">
+            <div class="cert-grid" id="certGrid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== VERIFY VIEW ===================== -->
+    <section id="view-verify" class="view">
+      <div class="page-head">
+        <p class="eyebrow">Public Verification</p>
+        <h2>Verify a Credential</h2>
+        <p>Enter a verification ID to confirm the authenticity of a lineage record or student certificate.</p>
+        <div class="rule"></div>
+      </div>
+      <div class="verify-box">
+        <div class="verify-search">
+          <input id="verifyInput" class="input" placeholder="e.g. KH-2026-000, KH-2026-001 or HG-LIN-003" />
+          <button class="btn btn-gold" id="verifyBtn">Verify</button>
+        </div>
+        <div id="verifyResult" class="verify-result">
+          <div class="verify-empty">Enter a verification ID above to look up a record.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <p class="footnote"><b>Demo mode</b> — all data is stored locally in your browser (localStorage). No account or server required. &nbsp;·&nbsp; <a href="#" id="resetDataLink" style="color:var(--gold-soft); text-decoration:underline; cursor:pointer;">Reset demo data</a></p>
+</div>
+
+<!-- Lineage node modal -->
+<div class="modal-backdrop" id="lineageModalBackdrop">
+  <div class="modal" id="lineageModal"></div>
+</div>
+
+<!-- Certificate modal -->
+<div class="modal-backdrop" id="certModalBackdrop">
+  <div class="modal" id="certModal"></div>
+</div>
+
+<script>
+/* =========================================================
+   SEED DATA
+========================================================= */
+const STORAGE_KEY = 'kwoon_platform_data_v3';
+
+/* Official rank progression order for this school */
+const SASH_ORDER = ['white','gold','orange','purple','blue','green','brown','red','black-1','black-6','black-9'];
+const SASH_LABEL = {
+  white:'White Sash', gold:'Gold Sash', orange:'Orange Sash', purple:'Purple Sash',
+  blue:'Blue Sash', green:'Green Sash', brown:'Brown Sash', red:'Red Sash',
+  'black-1':'Black Sash (1st Degree)',
+  'black-6':'Black Sash (6th Degree)',
+  'black-9':'Black Sash (9th Degree)'
+};
+
+/* Helper: numbered item list, e.g. numberedItems('sd','Self-Defense Technique',9) */
+function numberedItems(prefix, label, count, startAt){
+  const start = startAt || 1;
+  return Array.from({length:count}, (_,i)=>({ id:`${prefix}-${start+i}`, name:`${label} ${start+i}` }));
+}
+
+/*
+  SASH_PROGRESSION — the full official curriculum, sequenced sash by sash.
+  Each level has categorized requirement groups; each item carries a stable id
+  used to track individual student progress independent of display text.
+*/
+const SASH_PROGRESSION = [
+  {
+    key:'white', label:'White Sash', focus:'Foundational Mechanics',
+    categories:[
+      { name:'Structural Stances', items:[
+        {id:'w-st-set', name:'Set Stance'}, {id:'w-st-horse', name:'Horse Stance'},
+        {id:'w-st-cat', name:'Cat Stance'}, {id:'w-st-twist', name:'Twist Stance'},
+        {id:'w-st-bowarrow', name:'Bow & Arrow Stance'}, {id:'w-st-crane', name:'Crane Stance'},
+        {id:'w-st-fighting', name:'Fighting Horse Stance'}
+      ]},
+      { name:'Five Animal Hand Formations', items:[
+        {id:'w-an-tiger', name:'Tiger Claw'}, {id:'w-an-crane', name:'Crane Beak'},
+        {id:'w-an-snake', name:'Snake Hand'}, {id:'w-an-leopard', name:'Leopard Fist'},
+        {id:'w-an-dragon', name:'Dragon Claw'}
+      ]},
+      { name:'Ten Basic Blocks', items: numberedItems('w-blk','Basic Block',10) },
+      { name:'Hand Combinations', items: numberedItems('bh','Beginner Hand Combo',3) },
+      { name:'Etiquette', items:[{id:'w-salute', name:'Traditional Salute Etiquette'}] }
+    ]
+  },
+  {
+    key:'gold', label:'Gold Sash', focus:'Lau Gar Kuen Foundation',
+    categories:[
+      { name:'Forms', items:[{id:'g-form-laugar', name:'Lau Gar Kuen (Lam Family Fist) — Full Set'}] },
+      { name:'Hand Combinations (expands to 1–5)', items: numberedItems('bh','Beginner Hand Combo',2,4) },
+      { name:'Five Basic Kicks', items:[
+        {id:'g-kick-snap', name:'Snap Kick'}, {id:'g-kick-side', name:'Side Kick'},
+        {id:'g-kick-heel', name:'Thrusting Heel Kick'}, {id:'g-kick-round', name:'Roundhouse Kick'},
+        {id:'g-kick-stomp', name:'Stomp Kick'}
+      ]},
+      { name:'Blocking Routine', items:[{id:'g-dss1', name:'Da Saam Sing — 3-Star Blocking Routine'}] },
+      { name:'QiGong', items:[{id:'g-qigong', name:'Lifting the Sky QiGong'}] },
+      { name:'Self-Defense (Integrated)', items: numberedItems('g-sd','Self-Defense Technique',9) }
+    ]
+  },
+  {
+    key:'orange', label:'Orange Sash', focus:'Sam Yin Kuen & Applied Kicking',
+    categories:[
+      { name:'Forms', items:[{id:'o-form-samyin', name:'Sam Yin Kuen (Three Forms Fist)'}] },
+      { name:'Hand Combinations (expands to 1–7)', items: numberedItems('bh','Beginner Hand Combo',2,6) },
+      { name:'Kicking', items:[{id:'o-kick-turn', name:'Hung Ga Turning Sidekick'}] },
+      { name:'Blocking Routine', items:[{id:'o-dss2', name:'Da Saam Sing — Level 2 (With Movement)'}] },
+      { name:'QiGong', items:[{id:'o-qigong', name:'Heaven and Earth QiGong'}] },
+      { name:'Self-Defense (New Set)', items: numberedItems('o-sd','Self-Defense Technique',9) }
+    ]
+  },
+  {
+    key:'purple', label:'Purple Sash', focus:'Weapons Begin & Beginner Syllabus Complete',
+    categories:[
+      { name:'Weapon Elective (student choice)', items:[
+        {id:'p-wpn-dao', name:'Fu Mei Darn Do — Tiger Tail Knife'},
+        {id:'p-wpn-kwun', name:'Hung Cher Kwun — Traveler\u2019s Staff'}
+      ]},
+      { name:'Beginner Hand Syllabus Complete (Hands 1–10)', items:[
+        ...numberedItems('bh','Beginner Hand Combo',1,8),
+        {id:'bh-9', name:'Beginner Hand Combo 9 — Soi Long Pow Choy'},
+        {id:'bh-10', name:'Beginner Hand Combo 10 — Chat Sing Kuen Faat'}
+      ]},
+      { name:'Intermediate Hand Combinations (Begin)', items:[
+        {id:'ih-1', name:'Intermediate Combo 1 — Butterfly Palms to Black Tiger Claws'},
+        {id:'ih-2', name:'Intermediate Combo 2 — Ng Jo Jin Choy'}
+      ]},
+      { name:'Blocking Routine', items:[{id:'p-dss3', name:'Da Saam Sing — Level 3'}] },
+      { name:'Sensitivity Drills', items:[{id:'p-cutting', name:'Cutting Hands Sensitivity Drills'}] },
+      { name:'QiGong', items:[{id:'p-qigong', name:'Cleansing and Rooting QiGong'}] },
+      { name:'Weapon Applications', items: numberedItems('p-wa','Weapon Application',9) }
+    ]
+  },
+  {
+    key:'blue', label:'Blue Sash', focus:'Gung Gee Fook Fu Kuen & Power Generation',
+    categories:[
+      { name:'Forms', items:[{id:'bl-form-gungee', name:'Gung Gee Fook Fu Kuen (Taming the Tiger Set) — Long Form'}] },
+      { name:'Intermediate Hand Combinations 3–4', items: numberedItems('ih','Intermediate Combo',2,3) },
+      { name:'Partner Drills', items:[{id:'bl-power', name:'Heavy Power Generation Partner Drills'}] },
+      { name:'QiGong', items:[{id:'bl-ironshirt', name:'Iron Shirt QiGong (Elements)'}] },
+      { name:'Set Applications', items: numberedItems('bl-sa','Set Application',9) }
+    ]
+  },
+  {
+    key:'green', label:'Green Sash', focus:'Ching Nin Kuen & Partner Flow',
+    categories:[
+      { name:'Forms', items:[
+        {id:'gr-form-solo', name:'Ching Nin Kuen (Youth Fist) — Solo Set'},
+        {id:'gr-form-doydar', name:'Ching Nin Kuen — Doy Dar Sparring Set'}
+      ]},
+      { name:'Intermediate Hand Combinations 5–7', items: numberedItems('ih','Intermediate Combo',3,5) },
+      { name:'Sensitivity Drills', items:[{id:'gr-freeflow', name:'Free-Flow Sensitivity Drills'}] },
+      { name:'Counter-Attack Techniques', items: numberedItems('gr-ca','Active Counter-Attack Technique',9) }
+    ]
+  },
+  {
+    key:'brown', label:'Brown Sash', focus:'Sui Ma Fah Keun & Directional Footwork',
+    categories:[
+      { name:'Forms', items:[
+        {id:'br-form-solo', name:'Sui Ma Fah Keun (Short Plum Flower Fist) — Solo Set'},
+        {id:'br-form-doydar', name:'Sui Ma Fah Keun — Doy Dar Sparring Set'}
+      ]},
+      { name:'Intermediate Hand Combinations Complete (8–10)', items: numberedItems('ih','Intermediate Combo',3,8) },
+      { name:'Footwork', items:[{id:'br-footwork', name:'Plum Flower Spatial Footwork'}] },
+      { name:'QiGong', items:[{id:'br-qigong', name:'Advanced QiGong'}] },
+      { name:'Combat Techniques', items: numberedItems('br-ct','Combat Technique',9) }
+    ]
+  },
+  {
+    key:'red', label:'Red Sash', focus:'Lineage Mastery & Comprehensive Review',
+    categories:[
+      { name:'Forms', items:[{id:'r-form-fuhok', name:'Fu Hok Sheung Ying Kuen (Tiger/Crane Set)'}] },
+      { name:'Weapon Elective', items:[
+        {id:'r-wpn-spear', name:'Spear'}, {id:'r-wpn-pole', name:'Lau Gar Pole'}, {id:'r-wpn-sword', name:'Alternate Sword'}
+      ]},
+      { name:'Review', items:[{id:'r-review', name:'Complete Hand Syllabus Review (White \u2013 Brown)'}] },
+      { name:'Breathwork', items:[{id:'r-breath', name:'Tiger/Crane Breath Synchronization'}] },
+      { name:'Advanced Applications', items: numberedItems('r-aa','Advanced Application',9) },
+      { name:'Certification Test', items:[{id:'r-test', name:'Red Phase 1 Test — Comprehensive (White through Brown Sash)'}], isTest:true }
+    ]
+  },
+  {
+    key:'black-p1', label:'Black Sash — Phase 1', focus:'System Integration Begins',
+    categories:[
+      { name:'Forms', items:[{id:'bk1-form-supyin', name:'Sup Yin Kuen (Five Animals, Five Elements)'}] },
+      { name:'Custom Elective', items:[
+        {id:'bk1-el-weapons', name:'Elective: Advanced Weapons'},
+        {id:'bk1-el-choy', name:'Elective: Choy Li Fut'},
+        {id:'bk1-el-sparring', name:'Elective: Sparring Sets'}
+      ]},
+      { name:'Certification Test', items:[{id:'bk1-test', name:'Phase 1 Test — Comprehensive (White through Red Sash)'}], isTest:true }
+    ]
+  },
+  {
+    key:'black-p2', label:'Black Sash — Phase 2', focus:'Internal Cultivation',
+    categories:[
+      { name:'Forms', items:[{id:'bk2-form-tidsin', name:'Tid Sin Kuen (Iron Wire Set)'}] },
+      { name:'Ongoing Electives', items:[{id:'bk2-elective', name:'Continued Elective Study'}] }
+    ]
+  },
+  {
+    key:'black-p3', label:'Black Sash — Phase 3', focus:'Advanced Mastery',
+    categories:[
+      { name:'Integration', items:[{id:'bk3-integration', name:'Choy Li Fut & Hung Gar Blended Mastery — Sweeping Range Meets Structural Power'}] }
+    ]
+  }
+];
+
+function sashProgressionIndex(sash){
+  return SASH_PROGRESSION.findIndex(l => l.key === sash);
+}
+function totalSyllabusItemCount(){
+  return SASH_PROGRESSION.reduce((sum,lvl)=> sum + lvl.categories.reduce((s,c)=> s + c.items.length, 0), 0);
+}
+
+/* Generates a curriculumProgress array: everything below currentSashKey is fully
+   mastered, and the current sash level itself is partially worked through based
+   on the given fractions (used only to seed realistic demo data). */
+function buildStudentProgress(currentSashKey, doneFraction, progressFraction){
+  const progress = [];
+  const idx = sashProgressionIndex(currentSashKey);
+  for(let i=0;i<idx;i++){
+    SASH_PROGRESSION[i].categories.forEach(cat=>{
+      cat.items.forEach(it=> progress.push({id:it.id, state:'done'}));
+    });
+  }
+  if(idx >= 0){
+    const items = [];
+    SASH_PROGRESSION[idx].categories.forEach(cat=> cat.items.forEach(it=> items.push(it.id)));
+    const doneCount = Math.floor(items.length * doneFraction);
+    const progressCount = Math.floor(items.length * progressFraction);
+    items.forEach((id,i)=>{
+      if(i < doneCount) progress.push({id, state:'done'});
+      else if(i < doneCount + progressCount) progress.push({id, state:'progress'});
+    });
+  }
+  return progress;
+}
+
+function seedData(){
+  return {
+    lineage: [
+      {
+        gen:1, title:'Jee Sin Sim See', subtitle:'Abbot of the Southern Shaolin Temple',
+        nodes:[{
+          id:'gm-1', name:'Jee Sin Sim See', years:'Qing Dynasty Era',
+          role:'Zen Master (Sim See) · Abbot of Southern Shaolin',
+          bio:'One of the last abbots of the Shaolin tradition and counted among the legendary Five Elders who survived the Qing Dynasty\u2019s destruction of the Shaolin Temple. His teaching is linked to the roots of nearly every major southern Chinese martial art — Hung, Lau, Choy, Lee, and Mok family styles, along with Wing Chun and Hakka Kuen. After the temple\u2019s fall, he continued sheltering and training rebels loyal to the overthrown Ming Dynasty, and is credited with devising the famous \u201cwooden dummy hall.\u201d He passed his teaching to Hung Hei-Gung, who would go on to formally found Hung Gar in the early 1700s.',
+          curriculum:'Foundational Shaolin boxing methods and the wooden dummy training system, later systematized by his student Hung Hei-Gung into Hung Gar Kuen.',
+          verificationId:'HG-LIN-001', sash:'black-9'
+        }]
+      },
+      {
+        gen:2, title:'Hung Hei-Gung', subtitle:'Founder of Hung Gar Kuen',
+        nodes:[{
+          id:'gm-2', name:'Hung Hei-Gung', years:'1745 – 1825',
+          role:'Founder · Hung Gar Kuen',
+          bio:'Born Jyu, a descendant of the Ming royal house, he joined the resistance against the conquering Qing Dynasty and took refuge at the Southern Shaolin Monastery, adopting the name Hung Hei Kwun in honor of the first Ming emperor. There he trained under Abbot Jee Sin Sim See, learning the Tiger and Lohan styles and the Fok Fu Kuen form. After the temple was destroyed, he continued refining his art — later learning White Crane technique from his second wife, Fong Wing Chung — and blended tiger, crane, and five-elements methods into the system that became known as Hung Gar.',
+          curriculum:'Formal founding of Hung Gar Kuen, blending Shaolin Tiger and Lohan methods with White Crane technique.',
+          verificationId:'HG-LIN-002', sash:'black-9'
+        }]
+      },
+      {
+        gen:3, title:'Luk Ah Choi', subtitle:'Disciple of Jee Sin Sim See',
+        nodes:[{
+          id:'gm-3', name:'Luk Ah Choi', years:'Died Age 68',
+          role:'Direct Disciple of Jee Sin Sim See',
+          bio:'Orphaned young and raised by an abusive uncle, Luk Ah Choi ran away at age twelve and was taken in by the monk Lei Baak Fu, a master of the Southern Fa Kuen (Flower) style. After seven years of training under Lei Baak Fu, he was sent to the Southern Shaolin Temple in Fujian, where he became a personal student of Abbot Jee Sin Sim See. Following the temple\u2019s destruction, he returned to Guangdong and devoted the rest of his life to martial arts and Chinese medicine.',
+          curriculum:'Full transmission of the founding Hung Kuen curriculum, later passed to Wong Tai and other students in Guangzhou.',
+          verificationId:'HG-LIN-003', sash:'black-9'
+        }]
+      },
+      {
+        gen:4, title:'Wong Tai', subtitle:'First of the Wong Family Line',
+        nodes:[{
+          id:'gm-4', name:'Wong Tai', years:'Lineage Generation',
+          role:'Lineage Holder · First of the Wong Family Line',
+          bio:'Began training in kung fu at a young age, and when Luk Ah Choi arrived in Guangzhou, Wong Tai sought him out and was accepted as a personal student — some accounts also credit him with training directly under Hung Hei-Gung. He passed the system to his son, Wong Kei Ying, beginning three unbroken generations of father-to-son transmission within the Wong family. Little else survives in the historical record about his life, his legacy overshadowed in later years by his famous grandson, Wong Fei Hung.',
+          curriculum:'Traditional Hung Gar hand sets, passed directly from Luk Ah Choi.',
+          verificationId:'HG-LIN-004', sash:'black-9'
+        }]
+      },
+      {
+        gen:5, title:'Wong Kei Ying', subtitle:'Father of Wong Fei Hung',
+        nodes:[{
+          id:'gm-5', name:'Wong Kei Ying', years:'Lineage Generation',
+          role:'Physician & Martial Artist · One of the Ten Tigers of Guangdong',
+          bio:'Son of Wong Tai and father of Wong Fei Hung, Wong Kei Ying trained from childhood under his father before continuing his study directly with Luk Ah Choi. He went on to open his own kung fu school and Dit Da (bone-setting) clinic in Guangdong, earning renown as both fighter and physician, and was named one of the legendary Ten Tigers of Guangdong. His travels in search of medicinal herbs — often with young Wong Fei Hung at his side — led to an encounter with Lam Fook Sing, a senior student of Tit Kiu Sam, who taught the family the internal form Tit Sin Kuen in gratitude for medical aid.',
+          curriculum:'Full family Hung Gar curriculum; introduced Tit Sin Kuen into the family\u2019s training.',
+          verificationId:'HG-LIN-005', sash:'black-9'
+        }]
+      },
+      {
+        gen:6, title:'Wong Fei Hung', subtitle:'Father of Modern Hung Gar',
+        nodes:[{
+          id:'gm-6', name:'Wong Fei Hung', years:'1847 – 1924',
+          role:'Grandmaster · Father of Modern Hung Gar',
+          bio:'Trained first under his father, Wong Kei Ying, before studying under Lam Fook Sing, a senior student of Tit Kiu Sam. From this line he inherited the old Ng Ying Kuen, Sap Ying Kuen, and Tit Sin Kuen forms. Building on this foundation, he created Fu Hok Seung Ying Kuen and refined the system into the version still practiced today, incorporating Lau Gar Kuen, Miu Fa Kuen, Wu Tip Kuen, and Fu Pao Kuen as preparatory forms. Celebrated for his mastery of the Lion Dance and his personal integrity, he is remembered as the father of modern Hung Gar, and taught disciples including Lam Sai Wing and Tang Fung.',
+          curriculum:'Systematized the modern Hung Gar curriculum: Tit Sin Kuen, Fu Hok Seung Ying Kuen, Gung Gee Fuk Fu Kuen, and preparatory forms including Lau Gar Kuen.',
+          verificationId:'HG-LIN-006', sash:'black-9'
+        }]
+      },
+      {
+        gen:7, title:'Lam Sai Wing', subtitle:'Chief Disciple of Wong Fei Hung',
+        nodes:[{
+          id:'gm-7', name:'Lam Sai Wing', years:'1861 – 1942',
+          role:'Chief Disciple of Wong Fei Hung · Author & School Founder',
+          bio:'Trained first under his father before studying with Ng Cheun and, later, Wong Fei Hung himself. He opened his own school in Guangdong by the age of twenty, eventually teaching more than ten thousand students, and took first place in a major tournament held in the final years of the Qing Dynasty. He later published — with a student — the first written manuals for Gung Gee Fuk Fu Kuen, Fu Hok Seung Ying Kuen, and Tit Sin Kuen, still reprinted today, and became head of the Hung Gar line within the influential Ching Wu Athletic Association.',
+          curriculum:'Documented and preserved Gung Gee Fuk Fu Kuen, Fu Hok Seung Ying Kuen, and Tit Sin Kuen in published form.',
+          verificationId:'HG-LIN-007', sash:'black-9'
+        }]
+      },
+      {
+        gen:8, title:'Lam Jo', subtitle:'Leading Hung Gar Instructor, Hong Kong',
+        nodes:[{
+          id:'gm-8', name:'Lam Jo', years:'Lineage Generation',
+          role:'Leading Hung Gar Instructor · Hong Kong (also known as Lam Cho)',
+          bio:'Also known as Lam Cho, he became one of Hong Kong\u2019s leading instructors of Hung Gar (Tiger-Crane) Kung Fu, carrying forward the lineage descended from Lam Sai Wing. He would go on to serve as the primary Hung Gar instructor to a young Buck Sam Kong beginning at age eight, continuing the chain of transmission that eventually reached the United States.',
+          curriculum:'Full Tiger-Crane Hung Gar curriculum inherited from Lam Sai Wing\u2019s line.',
+          verificationId:'HG-LIN-008', sash:'black-9'
+        }]
+      },
+      {
+        gen:9, title:'BuckSam Kong', subtitle:'Bringing the System to America',
+        nodes:[{
+          id:'gm-9', name:'BuckSam Kong', years:'Instructor of the Year, 1974',
+          role:'Grandmaster · Black Belt Magazine Hall of Fame',
+          bio:'Began training in Hong Kong under his mother, a practitioner of Eagle Claw, before starting formal study in the Tam Tuei system at age six. Two years later he met Lam Cho (Lam Jo), one of Hong Kong\u2019s leading Hung Gar instructors, who became his primary teacher; he later also trained in Choy Li Fut. After emigrating to Hawaii in 1956 and serving as a hand-to-hand combat instructor in the U.S. Army during the Korean War, he opened one of the first Kung Fu schools in America open to students outside Chinese ancestry in October 1963. Named Black Belt Magazine\u2019s Kung Fu Instructor of the Year in 1974, he later relocated to Los Angeles and built a teaching lineage that now spans branches across the mainland U.S., Mexico, and Germany.',
+          curriculum:'Full traditional Hung Gar curriculum, adapted and taught openly in the United States for the first time.',
+          verificationId:'HG-LIN-009', sash:'black-9'
+        }]
+      },
+      {
+        gen:10, title:'Ray Hildreth', subtitle:'Lineage Master',
+        nodes:[{
+          id:'ray', name:'Sifu Ray Hildreth', years:'40+ Years Martial Arts Experience',
+          role:'Lineage Master · Academy of Self-Defense, Tulsa, OK',
+          bio:'A certified Hung Gar instructor under Grandmaster Buck Sam Kong with more than 40 years of martial arts experience, also trained in Choy Li Fut, Kenpo Karate, and the Chen, Yang, and Wu (Hao) styles of Tai Chi Chuan. He operates the Academy of Self-Defense in Tulsa, Oklahoma, and has judged regional and national Chinese martial arts tournaments. His honors include the AAU Outstanding Service Award, the World Karate Union Hall of Fame, the Whirlwind Classic Lifetime Achievement Award, and the American Black Belt System Hall of Fame. Beyond the martial arts, he is the author of Hill 488 (Simon & Schuster, 2003), recounting the 1966 Vietnam battle in which his 18-man platoon became the most decorated unit of its size in U.S. military history — service for which he received the Silver Star and Purple Heart.',
+          curriculum:'Oversees the complete White-through-Black-Sash progression system taught at Tulsa Kung Fu, cross-trained in Choy Li Fut, Kenpo Karate, and Tai Chi Chuan (Chen, Yang, Wu/Hao).',
+          verificationId:'HG-LIN-010', sash:'black-9'
+        }]
+      },
+      {
+        gen:11, title:'Kelan Hightower', subtitle:'Head Instructor · Tulsa Kung Fu',
+        nodes:[{
+          id:'kelan', name:'Sifu Kelan Hightower', years:'Present Day',
+          role:'Head Instructor · Tulsa Kung Fu',
+          bio:'Formally certified by Sifu Ray Hildreth to run an independent teaching hall. Runs the day-to-day curriculum, examinations, and student development for all active students at Tulsa Kung Fu.',
+          curriculum:'Runs the full nine-sash progression (White through Black Sash, Phases 1–3), from structural stances through Sup Yin Kuen and Tid Sin Kuen.',
+          verificationId:'HG-LIN-011', sash:'black-1'
+        }]
+      },
+      {
+        gen:12, title:'Active Registered Students', subtitle:'The Living Branches',
+        nodes:[] // populated dynamically from students[]
+      }
+    ],
+
+    students: [
+      {
+        id:'KH-2026-000', name:'Sifu Kelan Hightower', initials:'KH', sash:'black-1',
+        status:'active', joined:'2010-01-15', assoc:'Verified — Head Instructor / Tulsa Kung Fu',
+        competencies:{ stances:100, handSets:100, sparring:98, attendance:100 },
+        instructorNotes:'Head Instructor of Tulsa Kung Fu. Certified by Sifu Ray Hildreth to run an independent teaching hall. Oversees daily curriculum, student testing, and lineage preservation.',
+        journal:[
+          {date:'2026-08-15', type:'milestone', author:'Sifu Ray Hildreth', text:'Full certification confirmed for independent instruction and testing authority.'},
+          {date:'2026-07-01', type:'feedback', author:'Sifu Ray Hildreth', text:'Sup Yin Kuen form execution demonstrates exceptional structure and power generation.'}
+        ],
+        curriculumProgress: buildStudentProgress('black-p1', 1.0, 0.0),
+        exams:[
+          {date:'2024-10-12', title:'Red → Black Sash (1st Degree)', examiner:'Sifu Ray Hildreth', result:'pass', notes:'Flawless execution across all traditional hand sets, weapon forms, and combat applications.', retest:false}
+        ],
+        writtenExams:[
+          {date:'2024-10-01', title:'Black Sash Master Written — Lineage & Theory', score:'100%', examiner:'Sifu Ray Hildreth', status:'pass', notes:'Mastery level comprehension of Hung Gar history, Cantonese terminology, and internal power mechanics.'}
+        ],
+        certificates:[
+          {id:'cert-kh-1', title:'Black Sash (1st Degree) Certification', dateIssued:'2024-10-12', sash:'Black Sash (1st Degree)', verificationId:'KH-2026-000'},
+          {id:'cert-kh-2', title:'Head Instructor Appointment', dateIssued:'2024-11-01', sash:'Head Instructor', verificationId:'KH-2026-000-INS'}
+        ]
+      },
+      {
+        id:'KH-2026-001', name:'Chris H.', initials:'CH', sash:'purple',
+        status:'active', joined:'2021-02-10', assoc:'Verified — Intl. Hung Gar Assoc.',
+        competencies:{ stances:90, handSets:84, sparring:76, attendance:95 },
+        instructorNotes:'Strong command of the beginner and intermediate syllabus. Bridge work on the Purple Sash weapon elective is sharpening nicely. Ready to test into Blue Sash once Da Saam Sing Level 3 and the weapon applications round out.',
+        journal:[
+          {date:'2026-08-11', type:'practice', author:'Self-logged', text:'Ran Hung Cher Kwun twice, then drilled Da Saam Sing Level 3 transitions solo.'},
+          {date:'2026-08-04', type:'feedback', author:'Sifu Kelan Hightower', text:'Tiger Tail Knife grip is much cleaner. Watch the elbow drop on the recovery cut.'},
+          {date:'2026-07-15', type:'milestone', author:'Sifu Kelan Hightower', text:'Cleared for Purple Sash — full demonstration of the beginner hand syllabus and Sam Yin Kuen.'}
+        ],
+        curriculumProgress: buildStudentProgress('purple', 0.55, 0.25),
+        exams:[
+          {date:'2025-01-18', title:'Orange → Purple Sash', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Confident, controlled performance across the full beginner hand syllabus and Sam Yin Kuen.', retest:false},
+          {date:'2024-06-09', title:'Gold → Orange Sash', examiner:'Sifu Kelan Hightower', result:'retest', notes:'Da Saam Sing Level 2 timing broke down under fatigue late in the routine. No penalty — refine and retest.', retest:true},
+          {date:'2024-06-30', title:'Gold → Orange Sash (Retest)', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Timing held firm throughout. Promoted.', retest:false}
+        ],
+        writtenExams:[
+          {date:'2025-01-10', title:'Purple Sash Written — History & Terminology', score:'92%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Strong grasp of lineage history from Wong Fei Hung forward. Minor gaps on Cantonese terminology for weapon forms.'},
+          {date:'2024-05-20', title:'Orange Sash Written — Forms Vocabulary', score:'88%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Solid recall of stance and hand-form names.'}
+        ],
+        certificates:[
+          {id:'cert-ch-1', title:'Purple Sash Certification', dateIssued:'2025-01-18', sash:'Purple Sash', verificationId:'KH-2026-001'},
+          {id:'cert-ch-2', title:'Association Registration', dateIssued:'2021-02-10', sash:'Registered Member', verificationId:'KH-2026-001-R'}
+        ]
+      },
+      {
+        id:'KH-2026-002', name:'Travis T.', initials:'TT', sash:'green',
+        status:'active', joined:'2023-06-01', assoc:'Verified — Intl. Hung Gar Assoc.',
+        competencies:{ stances:74, handSets:62, sparring:55, attendance:88 },
+        instructorNotes:'Good horse stance foundation. Needs to relax the shoulders during Ching Nin Kuen — tension is creeping into the bridge hand during Doy Dar exchanges. Ready to push further into intermediate hand combos 5–7.',
+        journal:[
+          {date:'2026-08-09', type:'practice', author:'Self-logged', text:'Worked Ching Nin Kuen Doy Dar footwork slowly with a partner.'},
+          {date:'2026-07-30', type:'feedback', author:'Sifu Kelan Hightower', text:'Good improvement on sensitivity in the free-flow drills. Keep the weight centered through the transitions.'},
+          {date:'2026-07-02', type:'milestone', author:'Sifu Kelan Hightower', text:'Completed 6 months of consistent attendance — cleared to begin the Ching Nin Kuen Doy Dar sparring set.'}
+        ],
+        curriculumProgress: buildStudentProgress('green', 0.30, 0.30),
+        exams:[
+          {date:'2026-05-02', title:'Blue → Green Sash', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Clean Gung Gee Fook Fu Kuen delivery, confident power generation on the partner drills.', retest:false},
+          {date:'2025-11-14', title:'Purple → Blue Sash', examiner:'Sifu Kelan Hightower', result:'retest', notes:'Timing slipped on the third intermediate combo under pressure. No penalty — refine and retest.', retest:true},
+          {date:'2025-12-01', title:'Purple → Blue Sash (Retest)', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Timing corrected. Promoted.', retest:false}
+        ],
+        writtenExams:[
+          {date:'2026-04-25', title:'Green Sash Written — History & Terminology', score:'81%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Good grasp of the fundamentals. Review the lineage names from Luk Ah Choi through Wong Fei Hung before the next cycle.'}
+        ],
+        certificates:[
+          {id:'cert-tt-1', title:'Green Sash Certification', dateIssued:'2026-05-02', sash:'Green Sash', verificationId:'KH-2026-002'}
+        ]
+      },
+      {
+        id:'KH-2026-003', name:'Jordan H.', initials:'JH', sash:'red',
+        status:'active', joined:'2020-09-15', assoc:'Verified — Intl. Hung Gar Assoc.',
+        competencies:{ stances:96, handSets:93, sparring:87, attendance:98 },
+        instructorNotes:'Exceptional discipline and form clarity. Ready to begin Ching Ning Kuen and advanced Hung Cher Kwun work. Being considered for the assistant-instructor track after brown sash.',
+        journal:[
+          {date:'2026-08-12', type:'practice', author:'Self-logged', text:'Fu Hok Sheung Ying Kuen full run-through, then sparring drills focused on bridge control.'},
+          {date:'2026-07-28', type:'feedback', author:'Sifu Ray Hildreth', text:'Bridge arm strength is excellent. Start layering in Tiger/Crane breath synchronization on the strikes.'},
+          {date:'2026-06-15', type:'milestone', author:'Sifu Kelan Hightower', text:'Completed full Sui Ma Fah Keun Doy Dar set from memory, unprompted, during open training.'}
+        ],
+        curriculumProgress: buildStudentProgress('red', 0.70, 0.20),
+        exams:[
+          {date:'2025-04-10', title:'Brown → Red Sash', examiner:'Sifu Ray Hildreth', result:'pass', notes:'Outstanding technical control across all required forms and weapon elective.', retest:false}
+        ],
+        writtenExams:[
+          {date:'2025-04-02', title:'Red Sash Written — History, Terminology & Theory', score:'97%', examiner:'Sifu Ray Hildreth', status:'pass', notes:'Excellent command of the full lineage from Jee Sin Sim See through Tulsa Kung Fu, and strong theory answers on bridge mechanics.'},
+          {date:'2023-10-19', title:'Purple Sash Written — History & Terminology', score:'90%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Comprehensive answers, well prepared.'}
+        ],
+        certificates:[
+          {id:'cert-jh-1', title:'Red Sash Certification', dateIssued:'2025-04-10', sash:'Red Sash', verificationId:'KH-2026-003'}
+        ]
+      }
+    ]
+  };
+}
+
+/* =========================================================
+   STATE
+========================================================= */
+let DATA = loadData();
+let currentStudentId = DATA.students[0]?.id;
+let activeTab = 'profile';
+
+function isValidShape(d){
+  if(!d || !Array.isArray(d.lineage) || !Array.isArray(d.students)) return false;
+  return d.students.every(s =>
+    Array.isArray(s.curriculumProgress) &&
+    Array.isArray(s.writtenExams) &&
+    SASH_ORDER.includes(s.sash)
+  );
+}
+
+function loadData(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const parsed = JSON.parse(raw);
+      if(isValidShape(parsed)) return parsed;
+      console.warn('Stored data does not match the current schema — reseeding.');
+    }
+  }catch(e){ console.warn('localStorage read failed, reseeding', e); }
+  const seeded = seedData();
+  saveData(seeded);
+  return seeded;
+}
+function saveData(d = DATA){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+  catch(e){ console.warn('localStorage write failed', e); }
+}
+function getStudent(id){ return DATA.students.find(s=>s.id===id); }
+function esc(str){
+  return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+document.querySelectorAll('.nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=> switchView(btn.dataset.view));
+});
+function switchView(view){
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active', b.dataset.view===view));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active', v.id === 'view-'+view));
+}
+
+/* =========================================================
+   LINEAGE TREE RENDER
+========================================================= */
+function sashInitial(sash){
+  const s = (sash||'').split('-')[0];
+  return s ? s[0].toUpperCase() : '?';
+}
+function nameInitials(name){
+  return (name||'').split(' ').filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+}
+
+function renderLineageTree(){
+  // sync gen 12 with current student roster
+  const genActive = DATA.lineage[DATA.lineage.length - 1];
+  genActive.nodes = DATA.students.map(s=>({
+    id:'student-'+s.id, name:s.name, years:'Since '+s.joined.slice(0,4),
+    role: SASH_LABEL[s.sash] + ' · Active Student',
+    bio: s.instructorNotes,
+    curriculum: 'See student dossier in the Armory for full curriculum progress.',
+    verificationId: s.id, sash: s.sash, isStudent:true, studentId:s.id
+  }));
+
+  const container = document.getElementById('lineageTree');
+  container.innerHTML = DATA.lineage.map((gen,idx)=>`
+    <div class="gen-block">
+      ${idx>0 ? '<div class="connector"></div>' : ''}
+      <div class="gen-label">${esc(gen.title)}</div>
+      <div class="gen-sub">${esc(gen.subtitle)}</div>
+      <div class="gen-row">
+        ${gen.nodes.length ? gen.nodes.map(n=>lineageCardHTML(n)).join('') : '<div class="empty-state">No students registered yet.</div>'}
+      </div>
+    </div>
+  `).join('');
+
+  container.querySelectorAll('[data-lineage-node]').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const nodeId = card.getAttribute('data-lineage-node');
+      const node = findLineageNode(nodeId);
+      if(node) openLineageModal(node);
+    });
+  });
+}
+
+function lineageCardHTML(n){
+  return `
+    <div class="lineage-card" data-lineage-node="${esc(n.id)}">
+      <div class="seal">${esc(sashInitial(n.sash))}</div>
+      <h3>${esc(n.name)}</h3>
+      <div class="role">${esc(n.role)}</div>
+      <div class="years">${esc(n.years)}</div>
+      <span class="sash-badge"><span class="sash-dot sash-${esc(n.sash)}"></span><span>${esc(SASH_LABEL[n.sash] || n.sash)}</span></span>
+    </div>
+  `;
+}
+
+function findLineageNode(nodeId){
+  for(const gen of DATA.lineage){
+    const found = gen.nodes.find(n=>n.id===nodeId);
+    if(found) return found;
+  }
+  return null;
+}
+
+function openLineageModal(node){
+  const modal = document.getElementById('lineageModal');
+  modal.innerHTML = `
+    <button class="modal-close" id="lineageModalClose">✕</button>
+    <div class="modal-head">
+      <div class="seal seal-lg">${esc(sashInitial(node.sash))}</div>
+      <div>
+        <h3>${esc(node.name)}</h3>
+        <div class="role">${esc(node.role)}</div>
+      </div>
+    </div>
+    <p class="modal-bio">${esc(node.bio)}</p>
+    <div class="modal-field">
+      <label>Curriculum Scope</label>
+      <div class="val">${esc(node.curriculum)}</div>
+    </div>
+    <div class="modal-field">
+      <label>Rank</label>
+      <div class="val"><span class="sash-badge"><span class="sash-dot sash-${esc(node.sash)}"></span><span>${esc(SASH_LABEL[node.sash]||node.sash)}</span></span></div>
+    </div>
+    <div class="modal-field">
+      <label>Lineage Verification ID</label>
+      <div class="verify-id">${esc(node.verificationId)}</div>
+    </div>
+    ${node.isStudent ? `<button class="btn btn-gold" id="lineageGoArmory" style="margin-top:10px;">Open Full Dossier →</button>` : ''}
+  `;
+  document.getElementById('lineageModalBackdrop').classList.add('open');
+  document.getElementById('lineageModalClose').addEventListener('click', closeLineageModal);
+  const goBtn = document.getElementById('lineageGoArmory');
+  if(goBtn){
+    goBtn.addEventListener('click', ()=>{
+      closeLineageModal();
+      currentStudentId = node.studentId;
+      openLevelKey = null;
+      switchView('armory');
+      renderArmory();
+    });
+  }
+}
+function closeLineageModal(){ document.getElementById('lineageModalBackdrop').classList.remove('open'); }
+document.getElementById('lineageModalBackdrop').addEventListener('click', e=>{
+  if(e.target.id==='lineageModalBackdrop') closeLineageModal();
+});
+
+/* =========================================================
+   ARMORY RENDER
+========================================================= */
+function renderArmory(){
+  const student = getStudent(currentStudentId);
+  if(!student) return;
+
+  // sidebar
+  document.getElementById('sw-portrait').textContent = student.initials;
+  document.getElementById('sw-name').textContent = student.name;
+  document.getElementById('sw-sash').innerHTML = `<span class="sash-dot sash-${esc(student.sash)}"></span><span>${esc(SASH_LABEL[student.sash])}</span>`;
+  const statusPill = document.getElementById('sw-status');
+  statusPill.textContent = student.status==='active' ? 'Active — Registered' : 'On Hold';
+  statusPill.className = 'status-pill ' + (student.status==='active' ? 'status-active' : 'status-hold');
+  document.getElementById('sw-id').textContent = student.id;
+  document.getElementById('sw-joined').textContent = student.joined;
+  document.getElementById('sw-assoc').textContent = student.assoc;
+
+  // select dropdown
+  const select = document.getElementById('studentSelect');
+  select.innerHTML = DATA.students.map(s=>`<option value="${esc(s.id)}" ${s.id===currentStudentId?'selected':''}>${esc(s.name)} — ${esc(SASH_LABEL[s.sash])}</option>`).join('');
+
+  renderTabProfile(student);
+  renderTabJournal(student);
+  renderSyllabusOverview(student);
+  renderSyllabusAccordion(student);
+  renderTabExams(student);
+  renderTabWritten(student);
+  renderTabCerts(student);
+}
+
+document.getElementById('studentSelect').addEventListener('change', e=>{
+  currentStudentId = e.target.value;
+  openLevelKey = null; // re-open at the new student's current sash level
+  renderArmory();
+});
+
+/* ---- Tabs switching ---- */
+document.getElementById('tabbar').addEventListener('click', e=>{
+  const btn = e.target.closest('button[data-tab]');
+  if(!btn) return;
+  activeTab = btn.dataset.tab;
+  document.querySelectorAll('#tabbar button').forEach(b=>b.classList.toggle('active', b===btn));
+  document.querySelectorAll('.tabpanel').forEach(p=>p.classList.toggle('active', p.id === 'tab-'+activeTab));
+});
+
+/* ---- Tab 1: Profile & Attributes ---- */
+function renderTabProfile(student){
+  const c = student.competencies;
+  const attrs = [
+    {label:'Stances', value:c.stances},
+    {label:'Hand Sets', value:c.handSets},
+    {label:'Sparring', value:c.sparring},
+    {label:'Attendance', value:c.attendance}
+  ];
+  document.getElementById('attrGrid').innerHTML = attrs.map(a=>`
+    <div class="attr-card">
+      <div class="top"><span>${esc(a.label)}</span><span>${a.value}%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${a.value}%"></div></div>
+    </div>
+  `).join('') + `
+    <div class="attr-card">
+      <div class="top"><span>Association Registration</span><span style="font-size:12px;">${student.assoc.startsWith('Verified')?'✓':'—'}</span></div>
+      <div style="font-size:12.5px; color:var(--ink-dim); margin-top:4px;">${esc(student.assoc)}</div>
+    </div>
+  `;
+  document.getElementById('instructorNotes').textContent = student.instructorNotes;
+}
+
+/* ---- Tab 2: Journal ---- */
+function renderTabJournal(student){
+  const list = document.getElementById('journalList');
+  if(!student.journal.length){
+    list.innerHTML = '<div class="empty-state">No entries yet. Log the first training note above.</div>';
+    return;
+  }
+  const sorted = [...student.journal].sort((a,b)=> new Date(b.date) - new Date(a.date));
+  list.innerHTML = sorted.map(j=>`
+    <div class="journal-entry">
+      <div class="jhead">
+        <span class="jdate">${esc(j.date)}</span>
+        <span class="jtype jtype-${esc(j.type)}">${esc(j.type)}</span>
+      </div>
+      <div class="jtext">${esc(j.text)}</div>
+      <div class="jauthor">— ${esc(j.author)}</div>
+    </div>
+  `).join('');
+}
+document.getElementById('journalAdd').addEventListener('click', ()=>{
+  const student = getStudent(currentStudentId);
+  const text = document.getElementById('journalText').value.trim();
+  const type = document.getElementById('journalType').value;
+  if(!text) return;
+  student.journal.push({
+    date: new Date().toISOString().slice(0,10),
+    type, author:'Self-logged', text
+  });
+  document.getElementById('journalText').value = '';
+  saveData();
+  renderTabJournal(student);
+});
+
+/* ---- Tab 3: Sash Progression Syllabus ---- */
+let openLevelKey = null; // which accordion panel is expanded; reset when switching students
+
+function progressMapFor(student){
+  const map = {};
+  (student.curriculumProgress || []).forEach(p => map[p.id] = p.state);
+  return map;
+}
+function levelCompletionPct(level, progressMap){
+  let total = 0, weight = 0;
+  level.categories.forEach(cat => cat.items.forEach(it=>{
+    total++;
+    const st = progressMap[it.id];
+    if(st === 'done') weight += 1;
+    else if(st === 'progress') weight += 0.5;
+  }));
+  return total ? Math.round((weight/total)*100) : 0;
+}
+function syllabusItemRowHTML(item, state, locked){
+  const cls = state === 'done' ? 'done' : state === 'progress' ? 'progress' : '';
+  const icon = state === 'done' ? '✓' : state === 'progress' ? '•' : '';
+  const label = state === 'done' ? 'Mastered' : state === 'progress' ? 'In Progress' : 'Not Started';
+  return `
+    <div class="curric-item" data-item-id="${esc(item.id)}">
+      <div class="curric-check ${cls}" ${locked ? 'data-locked="true"' : ''}>${icon}</div>
+      <div class="curric-name" style="flex:1;">${esc(item.name)}</div>
+      <div class="curric-status">${label}</div>
+    </div>
+  `;
+}
+function renderSyllabusOverview(student){
+  const progressMap = progressMapFor(student);
+  const totalItems = totalSyllabusItemCount();
+  let weight = 0;
+  SASH_PROGRESSION.forEach(level => level.categories.forEach(cat => cat.items.forEach(it=>{
+    const st = progressMap[it.id];
+    if(st === 'done') weight += 1;
+    else if(st === 'progress') weight += 0.5;
+  })));
+  const overallPct = totalItems ? Math.round((weight/totalItems)*100) : 0;
+  document.getElementById('syllabusOverview').innerHTML = `
+    <span class="ov-label">Current Rank</span>
+    <span class="ov-rank"><span class="sash-badge"><span class="sash-dot sash-${esc(student.sash)}"></span><span>${esc(SASH_LABEL[student.sash] || student.sash)}</span></span></span>
+    <span class="ov-label">Full System Progress</span>
+    <div class="ov-track"><div class="bar-track"><div class="bar-fill" style="width:${overallPct}%"></div></div></div>
+    <span class="ov-pct">${overallPct}%</span>
+  `;
+}
+function renderSyllabusAccordion(student){
+  const progressMap = progressMapFor(student);
+  const currentIdx = sashProgressionIndex(student.sash);
+  const container = document.getElementById('syllabusAccordion');
+
+  container.innerHTML = SASH_PROGRESSION.map((level, idx)=>{
+    const pct = levelCompletionPct(level, progressMap);
+    const state = idx < currentIdx ? 'complete' : idx === currentIdx ? 'current' : 'locked';
+    const isOpen = openLevelKey ? openLevelKey === level.key : state === 'current';
+    const dotCssKey = level.key.startsWith('black') ? 'black-1' : level.key;
+    const tag = state==='complete' ? '<span class="tag-complete">Completed</span>'
+      : state==='current' ? '<span class="tag-current">Current</span>'
+      : '<span class="tag-locked">Upcoming</span>';
+    return `
+      <div class="sash-level ${state==='current'?'is-current':''} ${state==='locked'?'is-locked':''} ${isOpen?'open':''}" data-level="${esc(level.key)}">
+        <div class="sash-level-head" data-toggle="${esc(level.key)}">
+          <span class="chip-dot sash-${esc(dotCssKey)}"></span>
+          <div class="titles">
+            <h5>${esc(level.label)} ${tag}</h5>
+            <div class="focus">${esc(level.focus)}</div>
+          </div>
+          <div class="lvl-bar"><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div></div>
+          <div class="lvl-pct">${pct}%</div>
+          <div class="chevron">▶</div>
+        </div>
+        <div class="sash-level-body">
+          ${level.categories.map(cat => `
+            <div class="sash-cat">
+              <div class="sash-cat-name">${cat.name}</div>
+              ${cat.items.map(it => syllabusItemRowHTML(it, progressMap[it.id], state==='locked')).join('')}
+              ${cat.isTest ? `<div class="test-note">Certification checkpoint — comprehensive review test.</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  container.querySelectorAll('.sash-level-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      const key = head.dataset.toggle;
+      const levelEl = head.closest('.sash-level');
+      if(levelEl.classList.contains('is-locked')) return;
+      openLevelKey = (openLevelKey === key) ? '' : key;
+      renderSyllabusAccordion(student);
+    });
+  });
+
+  container.querySelectorAll('.curric-check').forEach(chk=>{
+    if(chk.dataset.locked === 'true') return;
+    chk.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const itemId = chk.closest('.curric-item').dataset.itemId;
+      cycleItemState(student, itemId);
+    });
+  });
+}
+function cycleItemState(student, itemId){
+  const list = student.curriculumProgress;
+  const existing = list.find(p => p.id === itemId);
+  if(!existing){
+    list.push({id:itemId, state:'progress'});
+  } else if(existing.state === 'progress'){
+    existing.state = 'done';
+  } else {
+    student.curriculumProgress = list.filter(p => p.id !== itemId);
+  }
+  saveData();
+  renderSyllabusOverview(student);
+  renderSyllabusAccordion(student);
+}
+
+/* ---- Tab 4: Exams ---- */
+function renderTabExams(student){
+  const list = document.getElementById('examList');
+  if(!student.exams.length){
+    list.innerHTML = '<div class="empty-state">No examinations logged yet.</div>';
+    return;
+  }
+  const sorted = [...student.exams].sort((a,b)=> new Date(b.date) - new Date(a.date));
+  list.innerHTML = sorted.map(ex=>`
+    <div class="exam-card">
+      <div class="exam-top">
+        <div>
+          <div class="exam-title">${esc(ex.title)}</div>
+          <div class="exam-date">${esc(ex.date)}</div>
+        </div>
+        <span class="exam-result ${ex.result==='pass'?'result-pass':'result-retest'}">${ex.result==='pass'?'Passed':'Retest Scheduled'}</span>
+      </div>
+      <div class="exam-notes">${esc(ex.notes)}</div>
+      <div class="exam-examiner">Examiner: ${esc(ex.examiner)}</div>
+      ${ex.retest ? `<div class="retest-note">Free retest, zero penalty — this school's philosophy is refinement, not failure.</div>` : ''}
+    </div>
+  `).join('');
+}
+
+/* ---- Tab 4b: Written Exams ---- */
+function renderTabWritten(student){
+  const list = document.getElementById('writtenExamList');
+  const entries = student.writtenExams || [];
+  if(!entries.length){
+    list.innerHTML = '<div class="empty-state">No written examinations logged yet.</div>';
+    return;
+  }
+  const sorted = [...entries].sort((a,b)=> new Date(b.date) - new Date(a.date));
+  list.innerHTML = sorted.map(ex=>`
+    <div class="exam-card">
+      <div class="exam-top">
+        <div>
+          <div class="exam-title">${esc(ex.title)}</div>
+          <div class="exam-date">${esc(ex.date)}</div>
+        </div>
+        <span class="exam-result ${ex.status==='pass'?'result-pass':'result-retest'}">${ex.status==='pass' ? ('Passed · ' + esc(ex.score)) : ('Retake Scheduled · ' + esc(ex.score))}</span>
+      </div>
+      <div class="exam-notes">${esc(ex.notes)}</div>
+      <div class="exam-examiner">Examiner: ${esc(ex.examiner)}</div>
+    </div>
+  `).join('');
+}
+
+/* ---- Tab 5: Certificates ---- */
+function renderTabCerts(student){
+  const grid = document.getElementById('certGrid');
+  if(!student.certificates.length){
+    grid.innerHTML = '<div class="empty-state">No certificates issued yet.</div>';
+    return;
+  }
+  grid.innerHTML = student.certificates.map(c=>`
+    <div class="cert-card" data-cert="${esc(c.id)}">
+      <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+      <div class="seal seal-sm" style="margin:0 auto;">${esc(sashInitial(student.sash))}</div>
+      <h4>${esc(c.title)}</h4>
+      <div class="sub">Issued ${esc(c.dateIssued)}</div>
+      <div class="vid">${esc(c.verificationId)}</div>
+    </div>
+  `).join('');
+  grid.querySelectorAll('[data-cert]').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const cert = student.certificates.find(c=>c.id === card.dataset.cert);
+      openCertModal(student, cert);
+    });
+  });
+}
+
+function openCertModal(student, cert){
+  const modal = document.getElementById('certModal');
+  modal.innerHTML = `
+    <button class="modal-close" id="certModalClose">✕</button>
+    <div id="printArea" class="cert-full">
+      <div class="frame">
+        <div class="seal seal-lg" style="margin:0 auto 14px;">${esc(sashInitial(student.sash))}</div>
+        <div class="eyebrow2">Tulsa Kung Fu</div>
+        <h2>${esc(cert.title)}</h2>
+        <div class="to">This certifies that</div>
+        <div class="name-line">${esc(student.name)}</div>
+        <div class="desc">has fulfilled the requirements of ${esc(cert.sash)} within the traditional curriculum of Tulsa Kung Fu, examined and approved under the lineage of Sifu Ray Hildreth and Sifu Kelan Hightower.</div>
+        <div class="verify-id">Verification ID: ${esc(cert.verificationId)}</div>
+        <div class="sigrow">
+          <div class="sigblock"><strong>Sifu Kelan Hightower</strong>Head Instructor</div>
+          <div class="sigblock"><strong>${esc(cert.dateIssued)}</strong>Date Issued</div>
+          <div class="sigblock"><strong>Sifu Ray Hildreth</strong>Lineage Master</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
+      <button class="btn btn-ghost" id="certPrint">Print / Export PDF</button>
+      <button class="btn btn-gold" id="certShare">Copy Verification Link</button>
+    </div>
+  `;
+  document.getElementById('certModalBackdrop').classList.add('open');
+  document.getElementById('certModalClose').addEventListener('click', ()=>document.getElementById('certModalBackdrop').classList.remove('open'));
+  document.getElementById('certPrint').addEventListener('click', ()=> window.print());
+  document.getElementById('certShare').addEventListener('click', (e)=>{
+    const url = `${location.origin}${location.pathname}?verify=${encodeURIComponent(cert.verificationId)}`;
+    navigator.clipboard?.writeText(url).catch(()=>{});
+    e.target.textContent = 'Link Copied ✓';
+    setTimeout(()=> e.target.textContent = 'Copy Verification Link', 1600);
+  });
+}
+document.getElementById('certModalBackdrop').addEventListener('click', e=>{
+  if(e.target.id==='certModalBackdrop') e.target.classList.remove('open');
+});
+
+/* =========================================================
+   VERIFY VIEW
+========================================================= */
+function runVerify(rawId){
+  const id = (rawId||'').trim();
+  const resultBox = document.getElementById('verifyResult');
+  if(!id){
+    resultBox.innerHTML = '<div class="verify-empty">Enter a verification ID above to look up a record.</div>';
+    return;
+  }
+
+  // check students / certificates
+  for(const s of DATA.students){
+    if(s.id.toLowerCase() === id.toLowerCase()){
+      resultBox.innerHTML = studentVerifyHTML(s);
+      return;
+    }
+    const cert = s.certificates.find(c=>c.verificationId.toLowerCase() === id.toLowerCase());
+    if(cert){
+      resultBox.innerHTML = certVerifyHTML(s, cert);
+      return;
+    }
+  }
+  // check lineage nodes
+  for(const gen of DATA.lineage){
+    const node = gen.nodes.find(n=> (n.verificationId||'').toLowerCase() === id.toLowerCase());
+    if(node){
+      resultBox.innerHTML = lineageVerifyHTML(node);
+      return;
+    }
+  }
+
+  resultBox.innerHTML = `
+    <div class="verify-empty">No record found for <strong style="color:var(--ink)">${esc(id)}</strong>. Check the ID and try again.</div>
+  `;
+}
+
+function studentVerifyHTML(s){
+  return `
+    <div class="verify-status-row"><span class="seal seal-sm">✓</span><span class="lbl">Verified Student Record</span></div>
+    <div class="card">
+      <div class="modal-head" style="margin-bottom:10px;">
+        <div class="seal">${esc(sashInitial(s.sash))}</div>
+        <div><h3 style="font-size:18px;">${esc(s.name)}</h3><div class="role">${esc(SASH_LABEL[s.sash])}</div></div>
+      </div>
+      <div class="meta-row"><span>Student ID</span><span>${esc(s.id)}</span></div>
+      <div class="meta-row"><span>Status</span><span>${s.status==='active'?'Active — Registered':'On Hold'}</span></div>
+      <div class="meta-row"><span>Association</span><span>${esc(s.assoc)}</span></div>
+      <div class="meta-row"><span>Enrolled</span><span>${esc(s.joined)}</span></div>
+    </div>
+  `;
+}
+function certVerifyHTML(s, cert){
+  return `
+    <div class="verify-status-row"><span class="seal seal-sm">✓</span><span class="lbl">Verified Certificate</span></div>
+    <div class="card">
+      <div class="modal-head" style="margin-bottom:10px;">
+        <div class="seal">${esc(sashInitial(s.sash))}</div>
+        <div><h3 style="font-size:18px;">${esc(cert.title)}</h3><div class="role">Issued to ${esc(s.name)}</div></div>
+      </div>
+      <div class="meta-row"><span>Verification ID</span><span>${esc(cert.verificationId)}</span></div>
+      <div class="meta-row"><span>Date Issued</span><span>${esc(cert.dateIssued)}</span></div>
+      <div class="meta-row"><span>Rank</span><span>${esc(cert.sash)}</span></div>
+    </div>
+  `;
+}
+function lineageVerifyHTML(node){
+  return `
+    <div class="verify-status-row"><span class="seal seal-sm">✓</span><span class="lbl">Verified Lineage Record</span></div>
+    <div class="card">
+      <div class="modal-head" style="margin-bottom:10px;">
+        <div class="seal">${esc(sashInitial(node.sash))}</div>
+        <div><h3 style="font-size:18px;">${esc(node.name)}</h3><div class="role">${esc(node.role)}</div></div>
+      </div>
+      <div class="meta-row"><span>Verification ID</span><span>${esc(node.verificationId)}</span></div>
+      <div class="meta-row"><span>Rank</span><span>${esc(SASH_LABEL[node.sash]||node.sash)}</span></div>
+    </div>
+  `;
+}
+document.getElementById('verifyBtn').addEventListener('click', ()=> runVerify(document.getElementById('verifyInput').value));
+document.getElementById('verifyInput').addEventListener('keydown', e=>{ if(e.key==='Enter') runVerify(e.target.value); });
+
+/* =========================================================
+   INIT — support /?verify=ID deep link
+========================================================= */
+(function init(){
+  document.getElementById('resetDataLink').addEventListener('click', (e)=>{
+    e.preventDefault();
+    if(confirm('Reset all demo data back to the original sample students and lineage? This clears any journal entries or progress you\'ve edited.')){
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }
+  });
+
+  renderLineageTree();
+  renderArmory();
+
+  const params = new URLSearchParams(location.search);
+  const verifyParam = params.get('verify');
+  if(verifyParam){
+    switchView('verify');
+    document.getElementById('verifyInput').value = verifyParam;
+    runVerify(verifyParam);
+  }
+})();
+</script>
+</body>
+</html>
