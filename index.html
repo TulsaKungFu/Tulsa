@@ -38,6 +38,7 @@
             --ink-ancient-dim: #5a4328;
             --wood: #3d2314;
             --wood-dark: #241208;
+            --wood-panel: #1a110a;
 
             --font-display: 'Cinzel', serif;
             --font-serif: 'Cormorant Garamond', serif;
@@ -79,8 +80,8 @@
         }
 
         ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -156,21 +157,22 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
-            padding: 14px 28px;
-            background: rgba(10, 11, 14, 0.86);
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(10, 11, 14, 0.88);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--hairline);
+            flex-wrap: wrap;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .brand-mark {
-            width: 38px;
+            width: 36px;
             height: 38px;
             border-radius: 50%;
             border: 1px solid var(--hairline-strong);
@@ -182,12 +184,13 @@
             font-size: 15px;
             font-weight: 700;
             background: linear-gradient(160deg, rgba(212, 175, 55, 0.10), transparent 60%);
+            flex-shrink: 0;
         }
 
         .brand-text h1 {
             font-family: var(--font-display);
-            font-size: 16px;
-            letter-spacing: 0.09em;
+            font-size: 14px;
+            letter-spacing: 0.08em;
             margin: 0;
             color: var(--silk);
             text-transform: uppercase;
@@ -196,33 +199,35 @@
 
         .brand-text p {
             margin: 1px 0 0;
-            font-size: 10.5px;
+            font-size: 9.5px;
             color: var(--ink-dim);
-            letter-spacing: 0.14em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
         }
 
         .nav {
             display: flex;
-            gap: 4px;
+            gap: 2px;
             background: var(--obsidian-raised);
-            padding: 4px;
+            padding: 3px;
             border-radius: 10px;
             border: 1px solid var(--hairline);
+            width: auto;
         }
 
         .nav button {
             border: none;
             background: transparent;
             color: var(--ink-dim);
-            padding: 9px 16px;
+            padding: 8px 12px;
             border-radius: 7px;
             cursor: pointer;
-            font-size: 12.5px;
-            letter-spacing: 0.05em;
+            font-size: 11px;
+            letter-spacing: 0.04em;
             font-weight: 600;
             transition: all .18s ease;
             text-transform: uppercase;
+            min-height: 38px;
         }
 
         .nav button:hover {
@@ -235,12 +240,35 @@
             box-shadow: 0 2px 10px rgba(212, 175, 55, 0.35);
         }
 
+        @media (max-width: 600px) {
+            .topbar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .brand {
+                justify-content: center;
+            }
+
+            .nav {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .nav button {
+                flex: 1;
+                text-align: center;
+                padding: 8px 4px;
+            }
+        }
+
         main {
             flex: 1;
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 36px 28px 80px;
+            padding: 20px 12px 60px;
         }
 
         .view {
@@ -271,22 +299,22 @@
         }
 
         .page-head {
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             text-align: center;
         }
 
         .eyebrow {
             font-family: var(--font-ui);
-            font-size: 11px;
-            letter-spacing: 0.25em;
+            font-size: 10px;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--gold-soft);
-            margin: 0 0 10px;
+            margin: 0 0 6px;
         }
 
         .page-head h2 {
             font-family: var(--font-display);
-            font-size: clamp(26px, 4vw, 38px);
+            font-size: clamp(22px, 5vw, 36px);
             margin: 0;
             color: var(--silk);
             font-weight: 700;
@@ -296,17 +324,17 @@
         .page-head p {
             font-family: var(--font-serif);
             font-style: italic;
-            font-size: 17px;
+            font-size: 15px;
             color: var(--ink-dim);
-            margin: 10px auto 0;
+            margin: 8px auto 0;
             max-width: 560px;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .rule {
-            width: 120px;
+            width: 100px;
             height: 1px;
-            margin: 18px auto 0;
+            margin: 14px auto 0;
             background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
         }
 
@@ -368,12 +396,12 @@
         .sash-badge {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            padding: 5px 12px 5px 8px;
+            gap: 6px;
+            padding: 4px 10px 4px 6px;
             border-radius: 20px;
             background: var(--obsidian-raised);
             border: 1px solid var(--hairline-strong);
-            font-size: 11.5px;
+            font-size: 10.5px;
             letter-spacing: 0.04em;
             color: var(--ink);
             font-weight: 600;
@@ -391,16 +419,16 @@
 
         .scroll-roller-top,
         .scroll-roller-bottom {
-            height: 24px;
+            height: 20px;
             background: linear-gradient(90deg, var(--wood-dark), var(--wood) 15%, #6a4225 50%, var(--wood) 85%, var(--wood-dark));
-            border-radius: 12px;
+            border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.2);
             position: relative;
             z-index: 10;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 8px;
+            padding: 0 6px;
         }
 
         .scroll-roller-top::before,
@@ -408,8 +436,8 @@
         .scroll-roller-bottom::before,
         .scroll-roller-bottom::after {
             content: '';
-            width: 14px;
-            height: 28px;
+            width: 12px;
+            height: 24px;
             background: radial-gradient(circle at 30% 30%, #e6c65b, var(--gold), #7a5f13);
             border-radius: 4px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
@@ -420,32 +448,31 @@
                 radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12), transparent 80%),
                 linear-gradient(180deg, var(--parchment-dark), var(--parchment) 8%, var(--parchment) 92%, var(--parchment-dark));
             color: var(--ink-ancient);
-            box-shadow: inset 0 0 50px rgba(74, 46, 19, 0.35), 0 15px 35px rgba(0, 0, 0, 0.6);
-            padding: 40px 24px;
+            box-shadow: inset 0 0 35px rgba(74, 46, 19, 0.35), 0 10px 25px rgba(0, 0, 0, 0.6);
+            padding: 28px 12px;
             position: relative;
-            margin: -6px 12px;
+            margin: -4px 6px;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Wax Seal Button */
         .wax-seal-wrapper {
             text-align: center;
             position: relative;
             z-index: 20;
-            margin: 10px 0 20px;
+            margin: 6px 0 16px;
         }
 
         .wax-seal-btn {
-            width: 80px;
-            height: 80px;
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
             background:
                 radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.25), transparent 45%),
                 conic-gradient(from 200deg, #d32f2f, var(--crimson-bright), #5a0000 65%, #d32f2f);
             box-shadow:
                 0 0 0 2px rgba(139, 0, 0, 0.8),
-                0 0 0 5px rgba(212, 175, 55, 0.5),
-                0 10px 25px rgba(0, 0, 0, 0.6);
+                0 0 0 4px rgba(212, 175, 55, 0.5),
+                0 8px 20px rgba(0, 0, 0, 0.6);
             display: inline-flex;
             flex-direction: column;
             align-items: center;
@@ -454,27 +481,20 @@
             border: none;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             position: relative;
+            touch-action: manipulation;
         }
 
         .wax-seal-btn::before {
             content: '';
             position: absolute;
-            inset: 6px;
+            inset: 5px;
             border-radius: 50%;
             border: 1.5px dashed rgba(212, 175, 55, 0.6);
         }
 
-        .wax-seal-btn:hover {
-            transform: scale(1.08) translateY(-2px);
-            box-shadow:
-                0 0 0 2px rgba(139, 0, 0, 0.9),
-                0 0 0 6px var(--gold),
-                0 14px 30px rgba(0, 0, 0, 0.7);
-        }
-
         .wax-seal-symbol {
             font-family: var(--font-display);
-            font-size: 28px;
+            font-size: 24px;
             color: var(--gold);
             font-weight: 700;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
@@ -484,10 +504,10 @@
         .wax-seal-label {
             font-family: var(--font-ui);
             font-size: 8px;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--silk);
-            margin-top: 3px;
+            margin-top: 2px;
             font-weight: 700;
         }
 
@@ -495,11 +515,10 @@
             font-family: var(--font-serif);
             font-style: italic;
             color: var(--ink-ancient-dim);
-            font-size: 14px;
-            margin-top: 8px;
+            font-size: 13px;
+            margin-top: 6px;
         }
 
-        /* Scroll Unroll Body */
         .scroll-body {
             max-height: 0;
             overflow: hidden;
@@ -509,12 +528,11 @@
         }
 
         .scroll-container.unrolled .scroll-body {
-            max-height: 6000px;
+            max-height: 9000px;
             opacity: 1;
-            padding-top: 20px;
+            padding-top: 14px;
         }
 
-        /* Tree Canvas Overlay */
         .tree-svg-canvas {
             position: absolute;
             top: 0;
@@ -541,13 +559,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .gen-label {
             font-family: var(--font-display);
-            font-size: 13px;
-            letter-spacing: 0.2em;
+            font-size: 12px;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--crimson);
             margin-bottom: 2px;
@@ -558,86 +576,64 @@
         .gen-sub {
             font-family: var(--font-serif);
             font-style: italic;
-            font-size: 14.5px;
+            font-size: 13.5px;
             color: var(--ink-ancient-dim);
-            margin-bottom: 22px;
+            margin-bottom: 16px;
+            text-align: center;
         }
 
         .gen-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 22px;
-            padding-bottom: 38px;
+            gap: 12px;
+            padding-bottom: 28px;
             width: 100%;
             position: relative;
         }
 
         .lineage-card {
-            width: 230px;
-            background: rgba(255, 250, 240, 0.85);
+            width: 100%;
+            max-width: 240px;
+            background: rgba(255, 250, 240, 0.88);
             border: 1px solid #8c6d3f;
             border-radius: 12px;
-            padding: 20px 16px 18px;
+            padding: 16px 12px;
             text-align: center;
             cursor: pointer;
-            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+            transition: transform .22s ease, box-shadow .22s ease;
             position: relative;
-            box-shadow: 0 4px 12px rgba(61, 35, 20, 0.15);
-        }
-
-        .lineage-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            padding: 1px;
-            background: linear-gradient(150deg, rgba(139, 0, 0, 0.4), transparent 40%, transparent 70%, rgba(212, 175, 55, 0.4));
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity .22s ease;
-            pointer-events: none;
-        }
-
-        .lineage-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--crimson);
-            box-shadow: 0 12px 28px rgba(61, 35, 20, 0.25);
-        }
-
-        .lineage-card:hover::before {
-            opacity: 1;
+            box-shadow: 0 3px 10px rgba(61, 35, 20, 0.15);
+            touch-action: manipulation;
         }
 
         .lineage-card .seal {
-            margin: 0 auto 12px;
+            margin: 0 auto 8px;
         }
 
         .lineage-card h3 {
             font-family: var(--font-display);
-            font-size: 15.5px;
-            margin: 0 0 4px;
+            font-size: 14.5px;
+            margin: 0 0 3px;
             color: var(--ink-ancient);
             font-weight: 700;
         }
 
         .lineage-card .role {
-            font-size: 11px;
+            font-size: 10.5px;
             color: var(--ink-ancient-dim);
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 10px;
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
             font-weight: 600;
         }
 
         .lineage-card .years {
             font-family: var(--font-serif);
             font-style: italic;
-            font-size: 13px;
+            font-size: 12.5px;
             color: #7a5e3a;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .lineage-card .sash-badge {
@@ -652,13 +648,13 @@
         .modal-backdrop {
             position: fixed;
             inset: 0;
-            background: rgba(5, 5, 7, 0.72);
-            backdrop-filter: blur(3px);
+            background: rgba(5, 5, 7, 0.78);
+            backdrop-filter: blur(4px);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 100;
-            padding: 20px;
+            padding: 12px;
         }
 
         .modal-backdrop.open {
@@ -667,108 +663,92 @@
 
         .modal {
             width: 100%;
-            max-width: 560px;
-            max-height: 86vh;
+            max-width: 540px;
+            max-height: 90vh;
             overflow-y: auto;
             background: linear-gradient(180deg, #16181f, #101116);
             border: 1px solid var(--hairline-strong);
             border-radius: 16px;
-            padding: 32px;
+            padding: 20px;
             position: relative;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
         }
 
-        .modal::before,
-        .modal::after {
-            content: '';
-            position: absolute;
-            left: 20px;
-            right: 20px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
-        }
-
-        .modal::before {
-            top: 14px;
-        }
-
-        .modal::after {
-            bottom: 14px;
+        @media (min-width: 600px) {
+            .modal {
+                padding: 32px;
+            }
         }
 
         .modal-close {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 30px;
-            height: 30px;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             border: 1px solid var(--hairline-strong);
-            background: transparent;
+            background: var(--obsidian-raised);
             color: var(--ink-dim);
             cursor: pointer;
-            font-size: 15px;
+            font-size: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .modal-close:hover {
-            color: var(--gold);
-            border-color: var(--gold-soft);
+            touch-action: manipulation;
         }
 
         .modal-head {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             align-items: center;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .modal-head h3 {
             font-family: var(--font-display);
-            font-size: 21px;
-            margin: 0 0 4px;
+            font-size: 18px;
+            margin: 0 0 2px;
             color: var(--silk);
         }
 
         .modal-head .role {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--gold-soft);
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
         }
 
         .modal-bio {
             font-family: var(--font-serif);
-            font-size: 16.5px;
-            line-height: 1.6;
+            font-size: 15px;
+            line-height: 1.55;
             color: var(--ink);
             font-style: italic;
-            margin: 16px 0;
+            margin: 14px 0;
         }
 
         .modal-field {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .modal-field label {
             display: block;
-            font-size: 10.5px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.12em;
             color: var(--ink-faint);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .modal-field div.val {
-            font-size: 14px;
+            font-size: 13.5px;
             color: var(--ink);
         }
 
         .verify-id {
             font-family: var(--font-ui);
-            font-size: 12.5px;
+            font-size: 12px;
             letter-spacing: 0.03em;
             background: var(--obsidian);
             border: 1px dashed var(--hairline-strong);
@@ -776,6 +756,7 @@
             border-radius: 8px;
             color: var(--gold);
             display: inline-block;
+            word-break: break-all;
         }
 
         /* =========================================================
@@ -784,16 +765,19 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             cursor: pointer;
             border: none;
             border-radius: 9px;
-            font-size: 12.5px;
+            font-size: 11.5px;
             font-weight: 700;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-            padding: 11px 18px;
+            padding: 12px 16px;
             transition: all .18s ease;
+            min-height: 44px;
+            touch-action: manipulation;
         }
 
         .btn-gold {
@@ -802,25 +786,10 @@
             box-shadow: 0 4px 16px rgba(212, 175, 55, 0.25);
         }
 
-        .btn-gold:hover {
-            filter: brightness(1.08);
-            transform: translateY(-1px);
-        }
-
         .btn-ghost {
             background: transparent;
             border: 1px solid var(--hairline-strong);
             color: var(--ink);
-        }
-
-        .btn-ghost:hover {
-            border-color: var(--gold-soft);
-            color: var(--gold);
-        }
-
-        .btn-crimson {
-            background: linear-gradient(180deg, #a1121f, var(--crimson-bright));
-            color: #fff;
         }
 
         .input,
@@ -830,12 +799,13 @@
             background: var(--obsidian-raised);
             border: 1px solid var(--hairline);
             border-radius: 9px;
-            padding: 11px 14px;
+            padding: 12px 14px;
             color: var(--ink);
             font-family: var(--font-ui);
-            font-size: 13.5px;
+            font-size: 14px;
             outline: none;
             transition: border-color .18s ease;
+            min-height: 44px;
         }
 
         .input:focus {
@@ -850,7 +820,7 @@
 
         label.field-label {
             display: block;
-            font-size: 10.5px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             color: var(--ink-faint);
@@ -858,69 +828,113 @@
         }
 
         /* =========================================================
-   ARMORY LAYOUT
+   TRAINING HALL / CHAMBER (KWOON) STYLING
 ========================================================= */
+        .kwoon-hall {
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.08), transparent 70%),
+                linear-gradient(180deg, var(--wood-panel), #120b06 50%, var(--obsidian));
+            border: 1px solid var(--hairline-strong);
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 15px 35px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        @media (min-width: 600px) {
+            .kwoon-hall {
+                padding: 24px;
+            }
+        }
+
+        .kwoon-banner {
+            text-align: center;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .kwoon-banner::before,
+        .kwoon-banner::after {
+            content: '武';
+            font-family: var(--font-display);
+            font-size: 20px;
+            color: var(--crimson-bright);
+            opacity: 0.6;
+            margin: 0 12px;
+        }
+
         .armory-grid {
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 26px;
+            grid-template-columns: 1fr;
+            gap: 16px;
             align-items: start;
         }
 
-        @media (max-width:880px) {
+        @media (min-width: 880px) {
             .armory-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 280px 1fr;
+                gap: 24px;
             }
         }
 
         .card {
-            background: linear-gradient(180deg, var(--obsidian-card), var(--obsidian-raised));
-            border: 1px solid var(--hairline);
-            border-radius: 16px;
-            padding: 22px;
+            background: linear-gradient(180deg, #1d140e, #140d09);
+            border: 1px solid rgba(212, 175, 55, 0.22);
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (min-width: 600px) {
+            .card {
+                padding: 22px;
+            }
         }
 
         .student-switch h4 {
             font-family: var(--font-display);
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--gold-soft);
-            margin: 0 0 14px;
+            margin: 0 0 12px;
         }
 
         .student-portrait {
-            width: 88px;
-            height: 88px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            margin: 0 auto 14px;
+            margin: 0 auto 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: var(--font-display);
-            font-size: 26px;
+            font-size: 24px;
             color: var(--gold);
             font-weight: 700;
-            background: radial-gradient(circle at 35% 30%, rgba(212, 175, 55, 0.18), rgba(139, 0, 0, 0.10) 70%);
-            border: 1px solid var(--hairline-strong);
+            background:
+                radial-gradient(circle at 35% 30%, rgba(212, 175, 55, 0.25), rgba(139, 0, 0, 0.25) 70%),
+                linear-gradient(180deg, #2b180d, #140b05);
+            border: 2px solid var(--gold-soft);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
         }
 
         .student-switch .name {
             font-family: var(--font-display);
-            font-size: 17px;
+            font-size: 16px;
             text-align: center;
             color: var(--silk);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .student-switch .status-line {
             text-align: center;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .status-pill {
             display: inline-block;
-            font-size: 10px;
+            font-size: 9.5px;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             padding: 4px 10px;
@@ -934,12 +948,6 @@
             border: 1px solid rgba(92, 138, 99, 0.4);
         }
 
-        .status-hold {
-            background: rgba(201, 154, 63, 0.18);
-            color: var(--warn);
-            border: 1px solid rgba(201, 154, 63, 0.4);
-        }
-
         .select-wrap {
             margin-bottom: 10px;
         }
@@ -947,9 +955,9 @@
         .meta-row {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 11.5px;
             padding: 8px 0;
-            border-bottom: 1px solid var(--hairline);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.12);
         }
 
         .meta-row:last-child {
@@ -960,7 +968,7 @@
             color: var(--ink-faint);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            font-size: 10.5px;
+            font-size: 10px;
         }
 
         .meta-row span:last-child {
@@ -971,35 +979,36 @@
         /* Tabs */
         .tabbar {
             display: flex;
-            gap: 2px;
+            gap: 4px;
             overflow-x: auto;
-            margin-bottom: 22px;
-            border-bottom: 1px solid var(--hairline);
-            padding-bottom: 0;
+            margin-bottom: 18px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 2px;
+            -webkit-overflow-scrolling: touch;
         }
 
         .tabbar button {
-            background: transparent;
-            border: none;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid transparent;
             color: var(--ink-dim);
             cursor: pointer;
-            padding: 12px 18px;
-            font-size: 12px;
+            padding: 10px 14px;
+            font-size: 10.5px;
             font-weight: 700;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            border-bottom: 2px solid transparent;
+            border-radius: 8px 8px 0 0;
             white-space: nowrap;
             transition: all .18s ease;
-        }
-
-        .tabbar button:hover {
-            color: var(--ink);
+            flex-shrink: 0;
+            min-height: 40px;
         }
 
         .tabbar button.active {
             color: var(--gold);
-            border-bottom-color: var(--gold);
+            background: rgba(212, 175, 55, 0.12);
+            border-color: var(--hairline-strong);
+            border-bottom-color: transparent;
         }
 
         .tabpanel {
@@ -1014,36 +1023,36 @@
         /* Attributes grid */
         .attr-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
         .attr-card {
-            background: var(--obsidian-raised);
+            background: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--hairline);
-            border-radius: 12px;
-            padding: 16px 18px;
+            border-radius: 10px;
+            padding: 12px 14px;
         }
 
         .attr-card .top {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .attr-card .top span:first-child {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
             color: var(--ink-dim);
             font-weight: 700;
         }
 
         .attr-card .top span:last-child {
             font-family: var(--font-display);
-            font-size: 17px;
+            font-size: 15px;
             color: var(--gold);
         }
 
@@ -1062,26 +1071,26 @@
         }
 
         .notes-block {
-            background: var(--obsidian-raised);
+            background: rgba(0, 0, 0, 0.35);
             border: 1px solid var(--hairline);
-            border-radius: 12px;
-            padding: 18px 20px;
+            border-radius: 10px;
+            padding: 14px 16px;
         }
 
         .notes-block h4 {
             font-family: var(--font-display);
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--gold-soft);
-            margin: 0 0 10px;
+            margin: 0 0 8px;
         }
 
         .notes-block p {
             font-family: var(--font-serif);
             font-style: italic;
-            font-size: 15.5px;
-            line-height: 1.6;
+            font-size: 14.5px;
+            line-height: 1.5;
             color: var(--ink);
             margin: 0;
         }
@@ -1089,21 +1098,21 @@
         /* Journal */
         .journal-form {
             display: grid;
-            grid-template-columns: 140px 1fr 140px;
-            gap: 10px;
-            margin-bottom: 22px;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 18px;
         }
 
-        @media (max-width:700px) {
+        @media (min-width: 600px) {
             .journal-form {
-                grid-template-columns: 1fr;
+                grid-template-columns: 130px 1fr 120px;
             }
         }
 
         .journal-entry {
             border-left: 2px solid var(--hairline-strong);
-            padding: 4px 0 18px 18px;
-            margin-left: 6px;
+            padding: 2px 0 14px 14px;
+            margin-left: 4px;
             position: relative;
         }
 
@@ -1111,7 +1120,7 @@
             content: '';
             position: absolute;
             left: -6px;
-            top: 5px;
+            top: 4px;
             width: 10px;
             height: 10px;
             border-radius: 50%;
@@ -1121,24 +1130,23 @@
 
         .journal-entry .jhead {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             flex-wrap: wrap;
         }
 
         .journal-entry .jdate {
-            font-size: 11px;
+            font-size: 10.5px;
             color: var(--ink-faint);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         .jtype {
-            font-size: 10px;
+            font-size: 9.5px;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 2px 9px;
+            letter-spacing: 0.05em;
+            padding: 2px 8px;
             border-radius: 20px;
             font-weight: 700;
         }
@@ -1159,46 +1167,29 @@
         }
 
         .journal-entry .jtext {
-            font-size: 14px;
+            font-size: 13.5px;
             color: var(--ink);
-            line-height: 1.55;
+            line-height: 1.45;
         }
 
         .journal-entry .jauthor {
-            font-size: 11.5px;
+            font-size: 11px;
             color: var(--ink-faint);
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         /* Curriculum */
-        .curric-group {
-            margin-bottom: 26px;
-        }
-
-        .curric-group h4 {
-            font-family: var(--font-display);
-            font-size: 13px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--gold-soft);
-            margin: 0 0 14px;
-        }
-
         .curric-item {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--hairline);
-        }
-
-        .curric-item:last-child {
-            border-bottom: none;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .curric-check {
-            width: 22px;
-            height: 22px;
+            width: 28px;
+            height: 28px;
             border-radius: 6px;
             border: 1px solid var(--hairline-strong);
             display: flex;
@@ -1206,9 +1197,10 @@
             justify-content: center;
             flex-shrink: 0;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 14px;
             color: transparent;
             transition: all .15s ease;
+            touch-action: manipulation;
         }
 
         .curric-check.done {
@@ -1224,196 +1216,115 @@
         }
 
         .curric-name {
-            flex: 0 0 190px;
-            font-size: 13.5px;
+            flex: 1;
+            font-size: 13px;
             color: var(--ink);
             font-weight: 600;
         }
 
-        .curric-bar {
-            flex: 1;
-            min-width: 100px;
-        }
-
-        .curric-pct {
-            width: 42px;
-            text-align: right;
-            font-size: 12px;
-            color: var(--ink-dim);
-            font-variant-numeric: tabular-nums;
-        }
-
         .curric-status {
-            flex: 0 0 100px;
-            text-align: right;
-            font-size: 10.5px;
+            font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--ink-faint);
+            text-align: right;
         }
 
-        /* ---- Sash Progression Overview & Accordion ---- */
+        /* Sash Progression Accordion */
         .syllabus-overview {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 26px;
-            padding: 16px 20px;
-            background: var(--obsidian-raised);
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 12px 14px;
+            background: rgba(0, 0, 0, 0.35);
             border: 1px solid var(--hairline);
-            border-radius: 12px;
+            border-radius: 10px;
             flex-wrap: wrap;
         }
 
         .syllabus-overview .ov-label {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.06em;
             color: var(--ink-faint);
-            flex: 0 0 auto;
         }
 
         .syllabus-overview .ov-track {
             flex: 1;
-            min-width: 160px;
+            min-width: 120px;
         }
 
         .syllabus-overview .ov-pct {
             font-family: var(--font-display);
-            font-size: 18px;
+            font-size: 16px;
             color: var(--gold);
-            flex: 0 0 auto;
-        }
-
-        .syllabus-overview .ov-rank {
-            flex: 0 0 auto;
         }
 
         .sash-level {
-            border: 1px solid var(--hairline);
-            border-radius: 12px;
-            margin-bottom: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 10px;
+            margin-bottom: 10px;
             overflow: hidden;
-            background: var(--obsidian-raised);
-        }
-
-        .sash-level.is-current {
-            border-color: var(--gold-soft);
-            box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.12);
-        }
-
-        .sash-level.is-locked {
-            opacity: 0.5;
+            background: rgba(0, 0, 0, 0.25);
         }
 
         .sash-level-head {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 16px 18px;
+            gap: 10px;
+            padding: 12px 14px;
             cursor: pointer;
             user-select: none;
-        }
-
-        .sash-level-head:hover {
-            background: rgba(212, 175, 55, 0.04);
-        }
-
-        .sash-level.is-locked .sash-level-head {
-            cursor: default;
+            touch-action: manipulation;
         }
 
         .sash-level-head .chip-dot {
-            width: 13px;
+            width: 11px;
             height: 13px;
             border-radius: 50%;
             flex-shrink: 0;
-            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
         }
 
         .sash-level-head .titles {
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
         }
 
         .sash-level-head .titles h5 {
             font-family: var(--font-display);
-            font-size: 14.5px;
+            font-size: 13.5px;
             margin: 0;
             color: var(--silk);
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .sash-level-head .titles .focus {
             font-family: var(--font-serif);
             font-style: italic;
-            font-size: 12.5px;
+            font-size: 11.5px;
             color: var(--ink-faint);
             margin-top: 2px;
         }
 
         .sash-level-head .lvl-pct {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--ink-dim);
-            font-variant-numeric: tabular-nums;
             flex: 0 0 auto;
         }
 
         .sash-level-head .lvl-bar {
-            width: 80px;
-            flex: 0 0 80px;
-        }
-
-        .sash-level-head .chevron {
-            flex: 0 0 auto;
-            color: var(--ink-faint);
-            transition: transform .2s ease;
-            font-size: 11px;
-        }
-
-        .sash-level.open .chevron {
-            transform: rotate(90deg);
-        }
-
-        .tag-current {
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            background: rgba(212, 175, 55, 0.18);
-            color: var(--gold);
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-weight: 700;
-        }
-
-        .tag-complete {
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            background: rgba(92, 138, 99, 0.18);
-            color: #7fbf8a;
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-weight: 700;
-        }
-
-        .tag-locked {
-            font-size: 9.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--ink-faint);
-            padding: 2px 8px;
-            border-radius: 20px;
-            border: 1px solid var(--hairline);
+            width: 50px;
+            flex: 0 0 50px;
         }
 
         .sash-level-body {
             display: none;
-            padding: 0 18px 18px;
+            padding: 0 14px 14px;
         }
 
         .sash-level.open .sash-level-body {
@@ -1421,66 +1332,52 @@
         }
 
         .sash-cat {
-            margin-bottom: 16px;
-        }
-
-        .sash-cat:last-child {
-            margin-bottom: 0;
+            margin-bottom: 12px;
         }
 
         .sash-cat-name {
-            font-size: 10.5px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--gold-soft);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             font-weight: 700;
-        }
-
-        .test-note {
-            margin-top: 6px;
-            padding: 10px 14px;
-            border-radius: 8px;
-            background: rgba(139, 0, 0, 0.10);
-            border: 1px dashed rgba(139, 0, 0, 0.4);
-            font-size: 12px;
-            color: #e0a3a3;
         }
 
         /* Exams */
         .exam-card {
-            background: var(--obsidian-raised);
-            border: 1px solid var(--hairline);
-            border-radius: 12px;
-            padding: 18px 20px;
-            margin-bottom: 14px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
         }
 
         .exam-top {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .exam-title {
             font-family: var(--font-display);
-            font-size: 15px;
+            font-size: 14px;
             color: var(--silk);
         }
 
         .exam-date {
-            font-size: 11.5px;
+            font-size: 11px;
             color: var(--ink-faint);
         }
 
         .exam-result {
-            font-size: 10.5px;
+            font-size: 9.5px;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 4px 10px;
+            letter-spacing: 0.05em;
+            padding: 3px 8px;
             border-radius: 20px;
             font-weight: 700;
         }
@@ -1490,216 +1387,125 @@
             color: #7fbf8a;
         }
 
-        .result-retest {
-            background: rgba(201, 154, 63, 0.18);
-            color: var(--warn);
-        }
-
         .exam-notes {
             font-family: var(--font-serif);
             font-style: italic;
-            font-size: 14.5px;
+            font-size: 13.5px;
             color: var(--ink-dim);
-            line-height: 1.5;
+            line-height: 1.45;
         }
 
         .exam-examiner {
-            font-size: 11.5px;
+            font-size: 11px;
             color: var(--ink-faint);
-            margin-top: 8px;
-        }
-
-        .retest-note {
-            margin-top: 10px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px dashed var(--hairline-strong);
-            font-size: 12px;
-            color: var(--gold-soft);
+            margin-top: 6px;
         }
 
         /* Certificates */
         .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
         }
 
         .cert-card {
-            border-radius: 14px;
-            padding: 24px 20px;
+            border-radius: 12px;
+            padding: 18px 14px;
             text-align: center;
             cursor: pointer;
             background:
                 radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.10), transparent 60%),
-                linear-gradient(180deg, var(--obsidian-card), var(--obsidian-raised));
+                linear-gradient(180deg, #1d140e, #140d09);
             border: 1px solid var(--hairline-strong);
             position: relative;
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
-
-        .cert-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .cert-card .corner {
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            border: 1px solid var(--gold-soft);
-        }
-
-        .cert-card .corner.tl {
-            top: 8px;
-            left: 8px;
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .cert-card .corner.tr {
-            top: 8px;
-            right: 8px;
-            border-left: none;
-            border-bottom: none;
-        }
-
-        .cert-card .corner.bl {
-            bottom: 8px;
-            left: 8px;
-            border-right: none;
-            border-top: none;
-        }
-
-        .cert-card .corner.br {
-            bottom: 8px;
-            right: 8px;
-            border-left: none;
-            border-top: none;
+            touch-action: manipulation;
         }
 
         .cert-card h4 {
             font-family: var(--font-display);
-            font-size: 16px;
+            font-size: 14.5px;
             color: var(--silk);
-            margin: 14px 0 6px;
+            margin: 10px 0 4px;
         }
 
         .cert-card .sub {
-            font-size: 11.5px;
+            font-size: 11px;
             color: var(--ink-dim);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .cert-card .vid {
-            font-size: 10.5px;
+            font-size: 10px;
             color: var(--gold-soft);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
         }
 
         .cert-full {
             text-align: center;
-            padding: 10px;
+            padding: 4px;
         }
 
         .cert-full .frame {
             border: 1px solid var(--gold-soft);
-            border-radius: 10px;
-            padding: 34px 26px;
+            border-radius: 8px;
+            padding: 20px 14px;
             position: relative;
             background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08), transparent 60%);
         }
 
-        .cert-full .frame::before {
-            content: '';
-            position: absolute;
-            inset: 8px;
-            border: 1px dashed rgba(212, 175, 55, 0.35);
-            border-radius: 6px;
-            pointer-events: none;
-        }
-
-        .cert-full .eyebrow2 {
-            font-size: 10.5px;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--gold-soft);
-            margin-bottom: 10px;
-        }
-
         .cert-full h2 {
             font-family: var(--font-display);
-            font-size: 24px;
+            font-size: 20px;
             color: var(--silk);
-            margin: 0 0 6px;
-        }
-
-        .cert-full .to {
-            font-family: var(--font-serif);
-            font-style: italic;
-            font-size: 15px;
-            color: var(--ink-dim);
-            margin-bottom: 16px;
+            margin: 0 0 4px;
         }
 
         .cert-full .name-line {
             font-family: var(--font-display);
-            font-size: 22px;
+            font-size: 18px;
             color: var(--gold);
-            margin-bottom: 18px;
+            margin-bottom: 14px;
         }
 
         .cert-full .desc {
             font-family: var(--font-serif);
-            font-size: 16px;
+            font-size: 14px;
             color: var(--ink);
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.5;
+            margin-bottom: 16px;
         }
 
         .cert-full .sigrow {
             display: flex;
             justify-content: space-between;
-            margin-top: 26px;
-            gap: 20px;
+            margin-top: 18px;
+            gap: 12px;
             flex-wrap: wrap;
-        }
-
-        .sigblock {
-            flex: 1;
-            min-width: 140px;
-            border-top: 1px solid var(--hairline-strong);
-            padding-top: 8px;
-            font-size: 11.5px;
-            color: var(--ink-faint);
-            text-align: center;
-        }
-
-        .sigblock strong {
-            display: block;
-            font-family: var(--font-display);
-            font-size: 13px;
-            color: var(--ink);
-            margin-bottom: 2px;
         }
 
         /* =========================================================
    VERIFY PAGE
 ========================================================= */
         .verify-box {
-            max-width: 560px;
+            max-width: 540px;
             margin: 0 auto;
         }
 
         .verify-search {
             display: flex;
-            gap: 10px;
-            margin-bottom: 28px;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 480px) {
+            .verify-search {
+                flex-direction: row;
+            }
         }
 
         .verify-result {
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .verify-empty {
@@ -1707,31 +1513,8 @@
             color: var(--ink-faint);
             font-family: var(--font-serif);
             font-style: italic;
-            font-size: 15px;
-            padding: 30px 0;
-        }
-
-        .verify-hint {
-            text-align: center;
-            font-size: 11.5px;
-            color: var(--ink-faint);
-            margin-top: 10px;
-        }
-
-        .verify-status-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 18px;
-        }
-
-        .verify-status-row .lbl {
-            font-family: var(--font-display);
             font-size: 14px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: #7fbf8a;
+            padding: 20px 0;
         }
 
         /* =========================================================
@@ -1739,23 +1522,19 @@
 ========================================================= */
         .empty-state {
             text-align: center;
-            padding: 30px 10px;
+            padding: 20px 8px;
             color: var(--ink-ancient-dim);
             font-family: var(--font-serif);
             font-style: italic;
-            font-size: 14.5px;
+            font-size: 13.5px;
         }
 
         .footnote {
             text-align: center;
-            font-size: 11px;
+            font-size: 10.5px;
             color: var(--ink-faint);
-            margin-top: 60px;
-            letter-spacing: 0.04em;
-        }
-
-        .footnote b {
-            color: var(--gold-soft);
+            margin-top: 40px;
+            letter-spacing: 0.03em;
         }
 
         @media print {
@@ -1831,90 +1610,93 @@
                 </div>
             </section>
 
-            <!-- ===================== ARMORY VIEW ===================== -->
+            <!-- ===================== ARMORY / KWOON VIEW ===================== -->
             <section id="view-armory" class="view">
                 <div class="page-head">
-                    <p class="eyebrow">內堂 · The Inner Hall</p>
-                    <h2>The Chamber</h2>
-                    <p>Curriculum progress, training chronicle, and examination record.</p>
+                    <p class="eyebrow">武館 · The Training Hall</p>
+                    <h2>The Inner Chamber</h2>
+                    <p>Dossier archives, training chronicles, and martial progression within the Kwoon.</p>
                     <div class="rule"></div>
                 </div>
 
-                <div class="armory-grid">
-                    <!-- Sidebar -->
-                    <div class="card student-switch">
-                        <div class="student-portrait" id="sw-portrait">—</div>
-                        <div class="name" id="sw-name">—</div>
-                        <div class="status-line">
-                            <span class="sash-badge" id="sw-sash"><span class="sash-dot"></span><span>—</span></span>
-                        </div>
-                        <div class="status-line"><span class="status-pill" id="sw-status">—</span></div>
+                <div class="kwoon-hall">
+                    <div class="kwoon-banner"></div>
+                    <div class="armory-grid">
+                        <!-- Sidebar -->
+                        <div class="card student-switch">
+                            <div class="student-portrait" id="sw-portrait">—</div>
+                            <div class="name" id="sw-name">—</div>
+                            <div class="status-line">
+                                <span class="sash-badge" id="sw-sash"><span class="sash-dot"></span><span>—</span></span>
+                            </div>
+                            <div class="status-line"><span class="status-pill" id="sw-status">—</span></div>
 
-                        <div class="select-wrap">
-                            <label class="field-label">Switch Student</label>
-                            <select id="studentSelect" class="input"></select>
-                        </div>
+                            <div class="select-wrap">
+                                <label class="field-label">Select Disciple / Student</label>
+                                <select id="studentSelect" class="input"></select>
+                            </div>
 
-                        <div style="margin-top:16px;">
-                            <div class="meta-row"><span>Student ID</span><span id="sw-id">—</span></div>
-                            <div class="meta-row"><span>Enrolled</span><span id="sw-joined">—</span></div>
-                            <div class="meta-row"><span>Association Reg.</span><span id="sw-assoc">—</span></div>
-                        </div>
-                    </div>
-
-                    <!-- Main -->
-                    <div class="card">
-                        <div class="tabbar" id="tabbar">
-                            <button data-tab="profile" class="active">Profile &amp; Attributes</button>
-                            <button data-tab="journal">Training Chronicle</button>
-                            <button data-tab="curriculum">Curriculum Tracker</button>
-                            <button data-tab="exams">Examination Archive</button>
-                            <button data-tab="written">Written Exams</button>
-                            <button data-tab="certs">Certificates</button>
-                        </div>
-
-                        <!-- Tab 1 -->
-                        <div class="tabpanel active" id="tab-profile">
-                            <div class="attr-grid" id="attrGrid"></div>
-                            <div class="notes-block">
-                                <h4>Instructor Notes</h4>
-                                <p id="instructorNotes">—</p>
+                            <div style="margin-top:12px;">
+                                <div class="meta-row"><span>Student ID</span><span id="sw-id">—</span></div>
+                                <div class="meta-row"><span>Enrolled</span><span id="sw-joined">—</span></div>
+                                <div class="meta-row"><span>Association Reg.</span><span id="sw-assoc">—</span></div>
                             </div>
                         </div>
 
-                        <!-- Tab 2 -->
-                        <div class="tabpanel" id="tab-journal">
-                            <div class="journal-form">
-                                <select id="journalType" class="input">
-                <option value="practice">Practice</option>
-                <option value="feedback">Sifu Feedback</option>
-                <option value="milestone">Milestone</option>
-              </select>
-                                <input id="journalText" class="input" placeholder="Add a training note, feedback, or milestone..." />
-                                <button class="btn btn-gold" id="journalAdd">Add Entry</button>
+                        <!-- Main -->
+                        <div class="card">
+                            <div class="tabbar" id="tabbar">
+                                <button data-tab="profile" class="active">Profile &amp; Attributes</button>
+                                <button data-tab="journal">Training Chronicle</button>
+                                <button data-tab="curriculum">Curriculum Tracker</button>
+                                <button data-tab="exams">Examination Archive</button>
+                                <button data-tab="written">Written Exams</button>
+                                <button data-tab="certs">Certificates</button>
                             </div>
-                            <div id="journalList"></div>
-                        </div>
 
-                        <!-- Tab 3 -->
-                        <div class="tabpanel" id="tab-curriculum">
-                            <div class="syllabus-overview" id="syllabusOverview"></div>
-                            <div id="syllabusAccordion"></div>
-                        </div>
+                            <!-- Tab 1 -->
+                            <div class="tabpanel active" id="tab-profile">
+                                <div class="attr-grid" id="attrGrid"></div>
+                                <div class="notes-block">
+                                    <h4>Sifu's Guidance &amp; Notes</h4>
+                                    <p id="instructorNotes">—</p>
+                                </div>
+                            </div>
 
-                        <!-- Tab 4 -->
-                        <div class="tabpanel" id="tab-exams">
-                            <div id="examList"></div>
-                        </div>
+                            <!-- Tab 2 -->
+                            <div class="tabpanel" id="tab-journal">
+                                <div class="journal-form">
+                                    <select id="journalType" class="input">
+                  <option value="practice">Practice Note</option>
+                  <option value="feedback">Sifu Feedback</option>
+                  <option value="milestone">Milestone</option>
+                </select>
+                                    <input id="journalText" class="input" placeholder="Record a training entry..." />
+                                    <button class="btn btn-gold" id="journalAdd">Log Entry</button>
+                                </div>
+                                <div id="journalList"></div>
+                            </div>
 
-                        <!-- Tab 4b: Written Exams -->
-                        <div class="tabpanel" id="tab-written">
-                            <div id="writtenExamList"></div>
-                        </div>
+                            <!-- Tab 3 -->
+                            <div class="tabpanel" id="tab-curriculum">
+                                <div class="syllabus-overview" id="syllabusOverview"></div>
+                                <div id="syllabusAccordion"></div>
+                            </div>
 
-                        <!-- Tab 5 -->
-                        <div class="tabpanel" id="tab-certs">
-                            <div class="cert-grid" id="certGrid"></div>
+                            <!-- Tab 4 -->
+                            <div class="tabpanel" id="tab-exams">
+                                <div id="examList"></div>
+                            </div>
+
+                            <!-- Tab 4b: Written Exams -->
+                            <div class="tabpanel" id="tab-written">
+                                <div id="writtenExamList"></div>
+                            </div>
+
+                            <!-- Tab 5 -->
+                            <div class="tabpanel" id="tab-certs">
+                                <div class="cert-grid" id="certGrid"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1942,9 +1724,9 @@
 
         </main>
 
-        <p class="footnote"><b>Demo mode</b> — all data is stored locally in your browser (localStorage). No account or
-            server required. &nbsp;·&nbsp; <a href="#" id="resetDataLink"
-                style="color:var(--gold-soft); text-decoration:underline; cursor:pointer;">Reset demo data</a></p>
+        <p class="footnote"><b>Demo mode</b> — all data stored locally in your browser. &nbsp;·&nbsp; <a href="#"
+                id="resetDataLink" style="color:var(--gold-soft); text-decoration:underline; cursor:pointer;">Reset demo
+                data</a></p>
     </div>
 
     <!-- Lineage node modal -->
@@ -1963,7 +1745,6 @@
 ========================================================= */
 const STORAGE_KEY = 'kwoon_platform_data_v3';
 
-/* Official rank progression order for this school */
 const SASH_ORDER = ['white','gold','orange','purple','blue','green','brown','red','black-1','black-6','black-9'];
 const SASH_LABEL = {
   white:'White Sash', gold:'Gold Sash', orange:'Orange Sash', purple:'Purple Sash',
@@ -1973,17 +1754,11 @@ const SASH_LABEL = {
   'black-9':'Black Sash (9th Degree)'
 };
 
-/* Helper: numbered item list, e.g. numberedItems('sd','Self-Defense Technique',9) */
 function numberedItems(prefix, label, count, startAt){
   const start = startAt || 1;
   return Array.from({length:count}, (_,i)=>({ id:`${prefix}-${start+i}`, name:`${label} ${start+i}` }));
 }
 
-/*
-  SASH_PROGRESSION — the full official curriculum, sequenced sash by sash.
-  Each level has categorized requirement groups; each item carries a stable id
-  used to track individual student progress independent of display text.
-*/
 const SASH_PROGRESSION = [
   {
     key:'white', label:'White Sash', focus:'Foundational Mechanics',
@@ -2134,9 +1909,6 @@ function totalSyllabusItemCount(){
   return SASH_PROGRESSION.reduce((sum,lvl)=> sum + lvl.categories.reduce((s,c)=> s + c.items.length, 0), 0);
 }
 
-/* Generates a curriculumProgress array: everything below currentSashKey is fully
-   mastered, and the current sash level itself is partially worked through based
-   on the given fractions (used only to seed realistic demo data). */
 function buildStudentProgress(currentSashKey, doneFraction, progressFraction){
   const progress = [];
   const idx = sashProgressionIndex(currentSashKey);
@@ -2166,8 +1938,8 @@ function seedData(){
         nodes:[{
           id:'gm-1', name:'Jee Sin Sim See', years:'Qing Dynasty Era',
           role:'Zen Master (Sim See) · Abbot of Southern Shaolin',
-          bio:'One of the last abbots of the Shaolin tradition and counted among the legendary Five Elders who survived the Qing Dynasty\u2019s destruction of the Shaolin Temple. His teaching is linked to the roots of nearly every major southern Chinese martial art — Hung, Lau, Choy, Lee, and Mok family styles, along with Wing Chun and Hakka Kuen. After the temple\u2019s fall, he continued sheltering and training rebels loyal to the overthrown Ming Dynasty, and is credited with devising the famous \u201cwooden dummy hall.\u201d He passed his teaching to Hung Hei-Gung, who would go on to formally found Hung Gar in the early 1700s.',
-          curriculum:'Foundational Shaolin boxing methods and the wooden dummy training system, later systematized by his student Hung Hei-Gung into Hung Gar Kuen.',
+          bio:'One of the last abbots of the Shaolin tradition and counted among the legendary Five Elders who survived the Qing Dynasty\u2019s destruction of the Shaolin Temple.',
+          curriculum:'Foundational Shaolin boxing methods and the wooden dummy training system.',
           verificationId:'HG-LIN-001', sash:'black-9'
         }]
       },
@@ -2176,8 +1948,8 @@ function seedData(){
         nodes:[{
           id:'gm-2', name:'Hung Hei-Gung', years:'1745 – 1825',
           role:'Founder · Hung Gar Kuen',
-          bio:'Born Jyu, a descendant of the Ming royal house, he joined the resistance against the conquering Qing Dynasty and took refuge at the Southern Shaolin Monastery, adopting the name Hung Hei Kwun in honor of the first Ming emperor. There he trained under Abbot Jee Sin Sim See, learning the Tiger and Lohan styles and the Fok Fu Kuen form. After the temple was destroyed, he continued refining his art — later learning White Crane technique from his second wife, Fong Wing Chung — and blended tiger, crane, and five-elements methods into the system that became known as Hung Gar.',
-          curriculum:'Formal founding of Hung Gar Kuen, blending Shaolin Tiger and Lohan methods with White Crane technique.',
+          bio:'Descendant of the Ming royal house, trained under Abbot Jee Sin Sim See before blending Shaolin and White Crane techniques into Hung Gar.',
+          curriculum:'Formal founding of Hung Gar Kuen.',
           verificationId:'HG-LIN-002', sash:'black-9'
         }]
       },
@@ -2186,8 +1958,8 @@ function seedData(){
         nodes:[{
           id:'gm-3', name:'Luk Ah Choi', years:'Died Age 68',
           role:'Direct Disciple of Jee Sin Sim See',
-          bio:'Orphaned young and raised by an abusive uncle, Luk Ah Choi ran away at age twelve and was taken in by the monk Lei Baak Fu, a master of the Southern Fa Kuen (Flower) style. After seven years of training under Lei Baak Fu, he was sent to the Southern Shaolin Temple in Fujian, where he became a personal student of Abbot Jee Sin Sim See. Following the temple\u2019s destruction, he returned to Guangdong and devoted the rest of his life to martial arts and Chinese medicine.',
-          curriculum:'Full transmission of the founding Hung Kuen curriculum, later passed to Wong Tai and other students in Guangzhou.',
+          bio:'Studied under Abbot Jee Sin Sim See and later returned to Guangdong, dedicating his life to medicine and martial arts transmission.',
+          curriculum:'Full transmission of founding Hung Kuen curriculum.',
           verificationId:'HG-LIN-003', sash:'black-9'
         }]
       },
@@ -2196,8 +1968,8 @@ function seedData(){
         nodes:[{
           id:'gm-4', name:'Wong Tai', years:'Lineage Generation',
           role:'Lineage Holder · First of the Wong Family Line',
-          bio:'Began training in kung fu at a young age, and when Luk Ah Choi arrived in Guangzhou, Wong Tai sought him out and was accepted as a personal student — some accounts also credit him with training directly under Hung Hei-Gung. He passed the system to his son, Wong Kei Ying, beginning three unbroken generations of father-to-son transmission within the Wong family. Little else survives in the historical record about his life, his legacy overshadowed in later years by his famous grandson, Wong Fei Hung.',
-          curriculum:'Traditional Hung Gar hand sets, passed directly from Luk Ah Choi.',
+          bio:'Accepted as a direct student by Luk Ah Choi in Guangzhou, initiating the family lineage.',
+          curriculum:'Traditional Hung Gar hand sets.',
           verificationId:'HG-LIN-004', sash:'black-9'
         }]
       },
@@ -2206,8 +1978,8 @@ function seedData(){
         nodes:[{
           id:'gm-5', name:'Wong Kei Ying', years:'Lineage Generation',
           role:'Physician & Martial Artist · One of the Ten Tigers of Guangdong',
-          bio:'Son of Wong Tai and father of Wong Fei Hung, Wong Kei Ying trained from childhood under his father before continuing his study directly with Luk Ah Choi. He went on to open his own kung fu school and Dit Da (bone-setting) clinic in Guangdong, earning renown as both fighter and physician, and was named one of the legendary Ten Tigers of Guangdong. His travels in search of medicinal herbs — often with young Wong Fei Hung at his side — led to an encounter with Lam Fook Sing, a senior student of Tit Kiu Sam, who taught the family the internal form Tit Sin Kuen in gratitude for medical aid.',
-          curriculum:'Full family Hung Gar curriculum; introduced Tit Sin Kuen into the family\u2019s training.',
+          bio:'One of the Ten Tigers of Guangdong, operating a bone-setting clinic and martial school in Guangzhou.',
+          curriculum:'Full family Hung Gar curriculum; introduced Tit Sin Kuen.',
           verificationId:'HG-LIN-005', sash:'black-9'
         }]
       },
@@ -2216,8 +1988,8 @@ function seedData(){
         nodes:[{
           id:'gm-6', name:'Wong Fei Hung', years:'1847 – 1924',
           role:'Grandmaster · Father of Modern Hung Gar',
-          bio:'Trained first under his father, Wong Kei Ying, before studying under Lam Fook Sing, a senior student of Tit Kiu Sam. From this line he inherited the old Ng Ying Kuen, Sap Ying Kuen, and Tit Sin Kuen forms. Building on this foundation, he created Fu Hok Seung Ying Kuen and refined the system into the version still practiced today, incorporating Lau Gar Kuen, Miu Fa Kuen, Wu Tip Kuen, and Fu Pao Kuen as preparatory forms. Celebrated for his mastery of the Lion Dance and his personal integrity, he is remembered as the father of modern Hung Gar, and taught disciples including Lam Sai Wing and Tang Fung.',
-          curriculum:'Systematized the modern Hung Gar curriculum: Tit Sin Kuen, Fu Hok Seung Ying Kuen, Gung Gee Fuk Fu Kuen, and preparatory forms including Lau Gar Kuen.',
+          bio:'Refined and systematized the Hung Gar core curriculum, adding preparatory forms and lion dance traditions.',
+          curriculum:'Systematized modern Hung Gar forms.',
           verificationId:'HG-LIN-006', sash:'black-9'
         }]
       },
@@ -2226,8 +1998,8 @@ function seedData(){
         nodes:[{
           id:'gm-7', name:'Lam Sai Wing', years:'1861 – 1942',
           role:'Chief Disciple of Wong Fei Hung · Author & School Founder',
-          bio:'Trained first under his father before studying with Ng Cheun and, later, Wong Fei Hung himself. He opened his own school in Guangdong by the age of twenty, eventually teaching more than ten thousand students, and took first place in a major tournament held in the final years of the Qing Dynasty. He later published — with a student — the first written manuals for Gung Gee Fuk Fu Kuen, Fu Hok Seung Ying Kuen, and Tit Sin Kuen, still reprinted today, and became head of the Hung Gar line within the influential Ching Wu Athletic Association.',
-          curriculum:'Documented and preserved Gung Gee Fuk Fu Kuen, Fu Hok Seung Ying Kuen, and Tit Sin Kuen in published form.',
+          bio:'Chief disciple of Wong Fei Hung who published the first written manuals for Gung Gee Fuk Fu Kuen and Fu Hok Seung Ying Kuen.',
+          curriculum:'Documented and preserved traditional core forms.',
           verificationId:'HG-LIN-007', sash:'black-9'
         }]
       },
@@ -2235,9 +2007,9 @@ function seedData(){
         gen:8, title:'Lam Jo', subtitle:'Leading Hung Gar Instructor, Hong Kong',
         nodes:[{
           id:'gm-8', name:'Lam Jo', years:'Lineage Generation',
-          role:'Leading Hung Gar Instructor · Hong Kong (also known as Lam Cho)',
-          bio:'Also known as Lam Cho, he became one of Hong Kong\u2019s leading instructors of Hung Gar (Tiger-Crane) Kung Fu, carrying forward the lineage descended from Lam Sai Wing. He would go on to serve as the primary Hung Gar instructor to a young Buck Sam Kong beginning at age eight, continuing the chain of transmission that eventually reached the United States.',
-          curriculum:'Full Tiger-Crane Hung Gar curriculum inherited from Lam Sai Wing\u2019s line.',
+          role:'Leading Hung Gar Instructor · Hong Kong',
+          bio:'Nephew and student of Lam Sai Wing, leading Hong Kong instructor who trained Buck Sam Kong.',
+          curriculum:'Full Tiger-Crane Hung Gar curriculum.',
           verificationId:'HG-LIN-008', sash:'black-9'
         }]
       },
@@ -2246,18 +2018,18 @@ function seedData(){
         nodes:[{
           id:'gm-9', name:'BuckSam Kong', years:'Instructor of the Year, 1974',
           role:'Grandmaster · Black Belt Magazine Hall of Fame',
-          bio:'Began training in Hong Kong under his mother, a practitioner of Eagle Claw, before starting formal study in the Tam Tuei system at age six. Two years later he met Lam Cho (Lam Jo), one of Hong Kong\u2019s leading Hung Gar instructors, who became his primary teacher; he later also trained in Choy Li Fut. After emigrating to Hawaii in 1956 and serving as a hand-to-hand combat instructor in the U.S. Army during the Korean War, he opened one of the first Kung Fu schools in America open to students outside Chinese ancestry in October 1963. Named Black Belt Magazine\u2019s Kung Fu Instructor of the Year in 1974, he later relocated to Los Angeles and built a teaching lineage that now spans branches across the mainland U.S., Mexico, and Germany.',
-          curriculum:'Full traditional Hung Gar curriculum, adapted and taught openly in the United States for the first time.',
+          bio:'Brought traditional Hung Gar to Hawaii and the US mainland starting in 1963.',
+          curriculum:'Full traditional Hung Gar curriculum adapted for open instruction.',
           verificationId:'HG-LIN-009', sash:'black-9'
         }]
       },
       {
         gen:10, title:'Ray Hildreth', subtitle:'Lineage Master',
         nodes:[{
-          id:'ray', name:'Sifu Ray Hildreth', years:'40+ Years Martial Arts Experience',
+          id:'ray', name:'Sifu Ray Hildreth', years:'40+ Years Experience',
           role:'Lineage Master · Academy of Self-Defense, Tulsa, OK',
-          bio:'A certified Hung Gar instructor under Grandmaster Buck Sam Kong with more than 40 years of martial arts experience, also trained in Choy Li Fut, Kenpo Karate, and the Chen, Yang, and Wu (Hao) styles of Tai Chi Chuan. He operates the Academy of Self-Defense in Tulsa, Oklahoma, and has judged regional and national Chinese martial arts tournaments. His honors include the AAU Outstanding Service Award, the World Karate Union Hall of Fame, the Whirlwind Classic Lifetime Achievement Award, and the American Black Belt System Hall of Fame. Beyond the martial arts, he is the author of Hill 488 (Simon & Schuster, 2003), recounting the 1966 Vietnam battle in which his 18-man platoon became the most decorated unit of its size in U.S. military history — service for which he received the Silver Star and Purple Heart.',
-          curriculum:'Oversees the complete White-through-Black-Sash progression system taught at Tulsa Kung Fu, cross-trained in Choy Li Fut, Kenpo Karate, and Tai Chi Chuan (Chen, Yang, Wu/Hao).',
+          bio:'Certified Hung Gar instructor under Buck Sam Kong with over 40 years teaching experience in Tulsa, OK.',
+          curriculum:'Oversees complete White-through-Black-Sash progression.',
           verificationId:'HG-LIN-010', sash:'black-9'
         }]
       },
@@ -2266,14 +2038,14 @@ function seedData(){
         nodes:[{
           id:'kelan', name:'Sifu Kelan Hightower', years:'Present Day',
           role:'Head Instructor · Tulsa Kung Fu',
-          bio:'Formally certified by Sifu Ray Hildreth to run an independent teaching hall. Runs the day-to-day curriculum, examinations, and student development for all active students at Tulsa Kung Fu.',
-          curriculum:'Runs the full nine-sash progression (White through Black Sash, Phases 1–3), from structural stances through Sup Yin Kuen and Tid Sin Kuen.',
+          bio:'Formally certified by Sifu Ray Hildreth. Runs daily instruction, testing, and student development at Tulsa Kung Fu.',
+          curriculum:'Runs the full nine-sash progression.',
           verificationId:'HG-LIN-011', sash:'black-1'
         }]
       },
       {
         gen:12, title:'Active Registered Students', subtitle:'The Living Branches',
-        nodes:[] // populated dynamically from students[]
+        nodes:[]
       }
     ],
 
@@ -2303,45 +2075,36 @@ function seedData(){
         id:'KH-2026-001', name:'Chris H.', initials:'CH', sash:'purple',
         status:'active', joined:'2021-02-10', assoc:'Verified — Intl. Hung Gar Assoc.',
         competencies:{ stances:90, handSets:84, sparring:76, attendance:95 },
-        instructorNotes:'Strong command of the beginner and intermediate syllabus. Bridge work on the Purple Sash weapon elective is sharpening nicely. Ready to test into Blue Sash once Da Saam Sing Level 3 and the weapon applications round out.',
+        instructorNotes:'Strong command of beginner and intermediate syllabus. Weapon bridge work is sharpening nicely.',
         journal:[
-          {date:'2026-08-11', type:'practice', author:'Self-logged', text:'Ran Hung Cher Kwun twice, then drilled Da Saam Sing Level 3 transitions solo.'},
-          {date:'2026-08-04', type:'feedback', author:'Sifu Kelan Hightower', text:'Tiger Tail Knife grip is much cleaner. Watch the elbow drop on the recovery cut.'},
-          {date:'2026-07-15', type:'milestone', author:'Sifu Kelan Hightower', text:'Cleared for Purple Sash — full demonstration of the beginner hand syllabus and Sam Yin Kuen.'}
+          {date:'2026-08-11', type:'practice', author:'Self-logged', text:'Ran Hung Cher Kwun twice, drilled Da Saam Sing Level 3 solo.'},
+          {date:'2026-08-04', type:'feedback', author:'Sifu Kelan Hightower', text:'Tiger Tail Knife grip is clean. Watch the elbow drop on recovery.'}
         ],
         curriculumProgress: buildStudentProgress('purple', 0.55, 0.25),
         exams:[
-          {date:'2025-01-18', title:'Orange → Purple Sash', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Confident, controlled performance across the full beginner hand syllabus and Sam Yin Kuen.', retest:false},
-          {date:'2024-06-09', title:'Gold → Orange Sash', examiner:'Sifu Kelan Hightower', result:'retest', notes:'Da Saam Sing Level 2 timing broke down under fatigue late in the routine. No penalty — refine and retest.', retest:true},
-          {date:'2024-06-30', title:'Gold → Orange Sash (Retest)', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Timing held firm throughout. Promoted.', retest:false}
+          {date:'2025-01-18', title:'Orange → Purple Sash', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Confident performance across beginner syllabus.', retest:false}
         ],
         writtenExams:[
-          {date:'2025-01-10', title:'Purple Sash Written — History & Terminology', score:'92%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Strong grasp of lineage history from Wong Fei Hung forward. Minor gaps on Cantonese terminology for weapon forms.'},
-          {date:'2024-05-20', title:'Orange Sash Written — Forms Vocabulary', score:'88%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Solid recall of stance and hand-form names.'}
+          {date:'2025-01-10', title:'Purple Sash Written — Terminology', score:'92%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Strong grasp of lineage history.'}
         ],
         certificates:[
-          {id:'cert-ch-1', title:'Purple Sash Certification', dateIssued:'2025-01-18', sash:'Purple Sash', verificationId:'KH-2026-001'},
-          {id:'cert-ch-2', title:'Association Registration', dateIssued:'2021-02-10', sash:'Registered Member', verificationId:'KH-2026-001-R'}
+          {id:'cert-ch-1', title:'Purple Sash Certification', dateIssued:'2025-01-18', sash:'Purple Sash', verificationId:'KH-2026-001'}
         ]
       },
       {
         id:'KH-2026-002', name:'Travis T.', initials:'TT', sash:'green',
         status:'active', joined:'2023-06-01', assoc:'Verified — Intl. Hung Gar Assoc.',
         competencies:{ stances:74, handSets:62, sparring:55, attendance:88 },
-        instructorNotes:'Good horse stance foundation. Needs to relax the shoulders during Ching Nin Kuen — tension is creeping into the bridge hand during Doy Dar exchanges. Ready to push further into intermediate hand combos 5–7.',
+        instructorNotes:'Good horse stance foundation. Keep shoulders relaxed during Ching Nin Kuen.',
         journal:[
-          {date:'2026-08-09', type:'practice', author:'Self-logged', text:'Worked Ching Nin Kuen Doy Dar footwork slowly with a partner.'},
-          {date:'2026-07-30', type:'feedback', author:'Sifu Kelan Hightower', text:'Good improvement on sensitivity in the free-flow drills. Keep the weight centered through the transitions.'},
-          {date:'2026-07-02', type:'milestone', author:'Sifu Kelan Hightower', text:'Completed 6 months of consistent attendance — cleared to begin the Ching Nin Kuen Doy Dar sparring set.'}
+          {date:'2026-08-09', type:'practice', author:'Self-logged', text:'Worked Ching Nin Kuen Doy Dar footwork slowly.'}
         ],
         curriculumProgress: buildStudentProgress('green', 0.30, 0.30),
         exams:[
-          {date:'2026-05-02', title:'Blue → Green Sash', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Clean Gung Gee Fook Fu Kuen delivery, confident power generation on the partner drills.', retest:false},
-          {date:'2025-11-14', title:'Purple → Blue Sash', examiner:'Sifu Kelan Hightower', result:'retest', notes:'Timing slipped on the third intermediate combo under pressure. No penalty — refine and retest.', retest:true},
-          {date:'2025-12-01', title:'Purple → Blue Sash (Retest)', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Timing corrected. Promoted.', retest:false}
+          {date:'2026-05-02', title:'Blue → Green Sash', examiner:'Sifu Kelan Hightower', result:'pass', notes:'Clean Gung Gee Fook Fu Kuen delivery.', retest:false}
         ],
         writtenExams:[
-          {date:'2026-04-25', title:'Green Sash Written — History & Terminology', score:'81%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Good grasp of the fundamentals. Review the lineage names from Luk Ah Choi through Wong Fei Hung before the next cycle.'}
+          {date:'2026-04-25', title:'Green Sash Written', score:'81%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Good grasp of fundamentals.'}
         ],
         certificates:[
           {id:'cert-tt-1', title:'Green Sash Certification', dateIssued:'2026-05-02', sash:'Green Sash', verificationId:'KH-2026-002'}
@@ -2351,19 +2114,16 @@ function seedData(){
         id:'KH-2026-003', name:'Jordan H.', initials:'JH', sash:'red',
         status:'active', joined:'2020-09-15', assoc:'Verified — Intl. Hung Gar Assoc.',
         competencies:{ stances:96, handSets:93, sparring:87, attendance:98 },
-        instructorNotes:'Exceptional discipline and form clarity. Ready to begin Ching Ning Kuen and advanced Hung Cher Kwun work. Being considered for the assistant-instructor track after brown sash.',
+        instructorNotes:'Exceptional discipline and form clarity. Being considered for assistant-instructor track.',
         journal:[
-          {date:'2026-08-12', type:'practice', author:'Self-logged', text:'Fu Hok Sheung Ying Kuen full run-through, then sparring drills focused on bridge control.'},
-          {date:'2026-07-28', type:'feedback', author:'Sifu Ray Hildreth', text:'Bridge arm strength is excellent. Start layering in Tiger/Crane breath synchronization on the strikes.'},
-          {date:'2026-06-15', type:'milestone', author:'Sifu Kelan Hightower', text:'Completed full Sui Ma Fah Keun Doy Dar set from memory, unprompted, during open training.'}
+          {date:'2026-08-12', type:'practice', author:'Self-logged', text:'Fu Hok Sheung Ying Kuen full run-through.'}
         ],
         curriculumProgress: buildStudentProgress('red', 0.70, 0.20),
         exams:[
-          {date:'2025-04-10', title:'Brown → Red Sash', examiner:'Sifu Ray Hildreth', result:'pass', notes:'Outstanding technical control across all required forms and weapon elective.', retest:false}
+          {date:'2025-04-10', title:'Brown → Red Sash', examiner:'Sifu Ray Hildreth', result:'pass', notes:'Outstanding technical control.', retest:false}
         ],
         writtenExams:[
-          {date:'2025-04-02', title:'Red Sash Written — History, Terminology & Theory', score:'97%', examiner:'Sifu Ray Hildreth', status:'pass', notes:'Excellent command of the full lineage from Jee Sin Sim See through Tulsa Kung Fu, and strong theory answers on bridge mechanics.'},
-          {date:'2023-10-19', title:'Purple Sash Written — History & Terminology', score:'90%', examiner:'Sifu Kelan Hightower', status:'pass', notes:'Comprehensive answers, well prepared.'}
+          {date:'2025-04-02', title:'Red Sash Written', score:'97%', examiner:'Sifu Ray Hildreth', status:'pass', notes:'Excellent command of lineage history.'}
         ],
         certificates:[
           {id:'cert-jh-1', title:'Red Sash Certification', dateIssued:'2025-04-10', sash:'Red Sash', verificationId:'KH-2026-003'}
@@ -2374,7 +2134,7 @@ function seedData(){
 }
 
 /* =========================================================
-   STATE
+   STATE & CORE FUNCTIONS
 ========================================================= */
 let DATA = loadData();
 let currentStudentId = DATA.students[0]?.id;
@@ -2395,37 +2155,31 @@ function loadData(){
     if(raw){
       const parsed = JSON.parse(raw);
       if(isValidShape(parsed)) return parsed;
-      console.warn('Stored data does not match the current schema — reseeding.');
     }
-  }catch(e){ console.warn('localStorage read failed, reseeding', e); }
+  }catch(e){}
   const seeded = seedData();
   saveData(seeded);
   return seeded;
 }
 function saveData(d = DATA){
-  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
-  catch(e){ console.warn('localStorage write failed', e); }
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }catch(e){}
 }
 function getStudent(id){ return DATA.students.find(s=>s.id===id); }
 function esc(str){
   return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+/* NAVIGATION */
 document.querySelectorAll('.nav button').forEach(btn=>{
   btn.addEventListener('click', ()=> switchView(btn.dataset.view));
 });
 function switchView(view){
   document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active', b.dataset.view===view));
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active', v.id === 'view-'+view));
-  if(view === 'lineage') drawTreeBranches();
+  if(view === 'lineage') setTimeout(drawTreeBranches, 200);
 }
 
-/* =========================================================
-   SCROLL UNROLL & TREE CANVAS
-========================================================= */
+/* SCROLL UNROLL & TREE CANVAS */
 let scrollIsUnrolled = false;
 
 document.getElementById('unrollScrollBtn').addEventListener('click', toggleScrollUnroll);
@@ -2484,10 +2238,10 @@ function drawTreeBranches(){
 
         path.setAttribute('d', d);
         path.setAttribute('stroke', '#5a3e1b');
-        path.setAttribute('stroke-width', '2.5');
-        path.setAttribute('stroke-dasharray', '4 2');
+        path.setAttribute('stroke-width', '2');
+        path.setAttribute('stroke-dasharray', '3 2');
         path.setAttribute('fill', 'none');
-        path.setAttribute('opacity', '0.65');
+        path.setAttribute('opacity', '0.6');
 
         svg.appendChild(path);
       });
@@ -2495,24 +2249,25 @@ function drawTreeBranches(){
   }
 }
 
-window.addEventListener('resize', drawTreeBranches);
+let resizeTimeout;
+window.addEventListener('resize', ()=>{
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(drawTreeBranches, 150);
+});
 
-/* =========================================================
-   LINEAGE TREE RENDER
-========================================================= */
+/* LINEAGE RENDER */
 function sashInitial(sash){
   const s = (sash||'').split('-')[0];
   return s ? s[0].toUpperCase() : '?';
 }
 
 function renderLineageTree(){
-  // sync gen 12 with current student roster
   const genActive = DATA.lineage[DATA.lineage.length - 1];
   genActive.nodes = DATA.students.map(s=>({
     id:'student-'+s.id, name:s.name, years:'Since '+s.joined.slice(0,4),
     role: SASH_LABEL[s.sash] + ' · Active Student',
     bio: s.instructorNotes,
-    curriculum: 'See student dossier in the Armory for full curriculum progress.',
+    curriculum: 'See student dossier in Chamber.',
     verificationId: s.id, sash: s.sash, isStudent:true, studentId:s.id
   }));
 
@@ -2522,15 +2277,14 @@ function renderLineageTree(){
       <div class="gen-label">${esc(gen.title)}</div>
       <div class="gen-sub">${esc(gen.subtitle)}</div>
       <div class="gen-row">
-        ${gen.nodes.length ? gen.nodes.map(n=>lineageCardHTML(n)).join('') : '<div class="empty-state">No students registered yet.</div>'}
+        ${gen.nodes.length ? gen.nodes.map(n=>lineageCardHTML(n)).join('') : '<div class="empty-state">No students registered.</div>'}
       </div>
     </div>
   `).join('');
 
   container.querySelectorAll('[data-lineage-node]').forEach(card=>{
     card.addEventListener('click', ()=>{
-      const nodeId = card.getAttribute('data-lineage-node');
-      const node = findLineageNode(nodeId);
+      const node = findLineageNode(card.getAttribute('data-lineage-node'));
       if(node) openLineageModal(node);
     });
   });
@@ -2573,14 +2327,10 @@ function openLineageModal(node){
       <div class="val">${esc(node.curriculum)}</div>
     </div>
     <div class="modal-field">
-      <label>Rank</label>
-      <div class="val"><span class="sash-badge"><span class="sash-dot sash-${esc(node.sash)}"></span><span>${esc(SASH_LABEL[node.sash]||node.sash)}</span></span></div>
-    </div>
-    <div class="modal-field">
       <label>Lineage Verification ID</label>
       <div class="verify-id">${esc(node.verificationId)}</div>
     </div>
-    ${node.isStudent ? `<button class="btn btn-gold" id="lineageGoArmory" style="margin-top:10px;">Open Full Dossier →</button>` : ''}
+    ${node.isStudent ? `<button class="btn btn-gold" id="lineageGoArmory" style="margin-top:10px; width:100%;">Open Full Dossier →</button>` : ''}
   `;
   document.getElementById('lineageModalBackdrop').classList.add('open');
   document.getElementById('lineageModalClose').addEventListener('click', closeLineageModal);
@@ -2600,14 +2350,11 @@ document.getElementById('lineageModalBackdrop').addEventListener('click', e=>{
   if(e.target.id==='lineageModalBackdrop') closeLineageModal();
 });
 
-/* =========================================================
-   ARMORY RENDER
-========================================================= */
+/* ARMORY RENDER */
 function renderArmory(){
   const student = getStudent(currentStudentId);
   if(!student) return;
 
-  // sidebar
   document.getElementById('sw-portrait').textContent = student.initials;
   document.getElementById('sw-name').textContent = student.name;
   document.getElementById('sw-sash').innerHTML = `<span class="sash-dot sash-${esc(student.sash)}"></span><span>${esc(SASH_LABEL[student.sash])}</span>`;
@@ -2618,7 +2365,6 @@ function renderArmory(){
   document.getElementById('sw-joined').textContent = student.joined;
   document.getElementById('sw-assoc').textContent = student.assoc;
 
-  // select dropdown
   const select = document.getElementById('studentSelect');
   select.innerHTML = DATA.students.map(s=>`<option value="${esc(s.id)}" ${s.id===currentStudentId?'selected':''}>${esc(s.name)} — ${esc(SASH_LABEL[s.sash])}</option>`).join('');
 
@@ -2633,11 +2379,10 @@ function renderArmory(){
 
 document.getElementById('studentSelect').addEventListener('change', e=>{
   currentStudentId = e.target.value;
-  openLevelKey = null; // re-open at the new student's current sash level
+  openLevelKey = null;
   renderArmory();
 });
 
-/* ---- Tabs switching ---- */
 document.getElementById('tabbar').addEventListener('click', e=>{
   const btn = e.target.closest('button[data-tab]');
   if(!btn) return;
@@ -2646,7 +2391,6 @@ document.getElementById('tabbar').addEventListener('click', e=>{
   document.querySelectorAll('.tabpanel').forEach(p=>p.classList.toggle('active', p.id === 'tab-'+activeTab));
 });
 
-/* ---- Tab 1: Profile & Attributes ---- */
 function renderTabProfile(student){
   const c = student.competencies;
   const attrs = [
@@ -2660,20 +2404,14 @@ function renderTabProfile(student){
       <div class="top"><span>${esc(a.label)}</span><span>${a.value}%</span></div>
       <div class="bar-track"><div class="bar-fill" style="width:${a.value}%"></div></div>
     </div>
-  `).join('') + `
-    <div class="attr-card">
-      <div class="top"><span>Association Registration</span><span style="font-size:12px;">${student.assoc.startsWith('Verified')?'✓':'—'}</span></div>
-      <div style="font-size:12.5px; color:var(--ink-dim); margin-top:4px;">${esc(student.assoc)}</div>
-    </div>
-  `;
+  `).join('');
   document.getElementById('instructorNotes').textContent = student.instructorNotes;
 }
 
-/* ---- Tab 2: Journal ---- */
 function renderTabJournal(student){
   const list = document.getElementById('journalList');
   if(!student.journal.length){
-    list.innerHTML = '<div class="empty-state">No entries yet. Log the first training note above.</div>';
+    list.innerHTML = '<div class="empty-state">No entries yet. Log the first entry above.</div>';
     return;
   }
   const sorted = [...student.journal].sort((a,b)=> new Date(b.date) - new Date(a.date));
@@ -2702,8 +2440,7 @@ document.getElementById('journalAdd').addEventListener('click', ()=>{
   renderTabJournal(student);
 });
 
-/* ---- Tab 3: Sash Progression Syllabus ---- */
-let openLevelKey = null; // which accordion panel is expanded; reset when switching students
+let openLevelKey = null;
 
 function progressMapFor(student){
   const map = {};
@@ -2727,7 +2464,7 @@ function syllabusItemRowHTML(item, state, locked){
   return `
     <div class="curric-item" data-item-id="${esc(item.id)}">
       <div class="curric-check ${cls}" ${locked ? 'data-locked="true"' : ''}>${icon}</div>
-      <div class="curric-name" style="flex:1;">${esc(item.name)}</div>
+      <div class="curric-name">${esc(item.name)}</div>
       <div class="curric-status">${label}</div>
     </div>
   `;
@@ -2743,9 +2480,8 @@ function renderSyllabusOverview(student){
   })));
   const overallPct = totalItems ? Math.round((weight/totalItems)*100) : 0;
   document.getElementById('syllabusOverview').innerHTML = `
-    <span class="ov-label">Current Rank</span>
-    <span class="ov-rank"><span class="sash-badge"><span class="sash-dot sash-${esc(student.sash)}"></span><span>${esc(SASH_LABEL[student.sash] || student.sash)}</span></span></span>
-    <span class="ov-label">Full System Progress</span>
+    <span class="ov-label">Rank</span>
+    <span class="sash-badge"><span class="sash-dot sash-${esc(student.sash)}"></span><span>${esc(SASH_LABEL[student.sash] || student.sash)}</span></span>
     <div class="ov-track"><div class="bar-track"><div class="bar-fill" style="width:${overallPct}%"></div></div></div>
     <span class="ov-pct">${overallPct}%</span>
   `;
@@ -2760,27 +2496,22 @@ function renderSyllabusAccordion(student){
     const state = idx < currentIdx ? 'complete' : idx === currentIdx ? 'current' : 'locked';
     const isOpen = openLevelKey ? openLevelKey === level.key : state === 'current';
     const dotCssKey = level.key.startsWith('black') ? 'black-1' : level.key;
-    const tag = state==='complete' ? '<span class="tag-complete">Completed</span>'
-      : state==='current' ? '<span class="tag-current">Current</span>'
-      : '<span class="tag-locked">Upcoming</span>';
     return `
       <div class="sash-level ${state==='current'?'is-current':''} ${state==='locked'?'is-locked':''} ${isOpen?'open':''}" data-level="${esc(level.key)}">
         <div class="sash-level-head" data-toggle="${esc(level.key)}">
           <span class="chip-dot sash-${esc(dotCssKey)}"></span>
           <div class="titles">
-            <h5>${esc(level.label)} ${tag}</h5>
+            <h5>${esc(level.label)}</h5>
             <div class="focus">${esc(level.focus)}</div>
           </div>
           <div class="lvl-bar"><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div></div>
           <div class="lvl-pct">${pct}%</div>
-          <div class="chevron">▶</div>
         </div>
         <div class="sash-level-body">
           ${level.categories.map(cat => `
             <div class="sash-cat">
               <div class="sash-cat-name">${cat.name}</div>
               ${cat.items.map(it => syllabusItemRowHTML(it, progressMap[it.id], state==='locked')).join('')}
-              ${cat.isTest ? `<div class="test-note">Certification checkpoint — comprehensive review test.</div>` : ''}
             </div>
           `).join('')}
         </div>
@@ -2822,7 +2553,6 @@ function cycleItemState(student, itemId){
   renderSyllabusAccordion(student);
 }
 
-/* ---- Tab 4: Exams ---- */
 function renderTabExams(student){
   const list = document.getElementById('examList');
   if(!student.exams.length){
@@ -2837,21 +2567,19 @@ function renderTabExams(student){
           <div class="exam-title">${esc(ex.title)}</div>
           <div class="exam-date">${esc(ex.date)}</div>
         </div>
-        <span class="exam-result ${ex.result==='pass'?'result-pass':'result-retest'}">${ex.result==='pass'?'Passed':'Retest Scheduled'}</span>
+        <span class="exam-result ${ex.result==='pass'?'result-pass':''}">${ex.result==='pass'?'Passed':'Retest'}</span>
       </div>
       <div class="exam-notes">${esc(ex.notes)}</div>
       <div class="exam-examiner">Examiner: ${esc(ex.examiner)}</div>
-      ${ex.retest ? `<div class="retest-note">Free retest, zero penalty — this school's philosophy is refinement, not failure.</div>` : ''}
     </div>
   `).join('');
 }
 
-/* ---- Tab 4b: Written Exams ---- */
 function renderTabWritten(student){
   const list = document.getElementById('writtenExamList');
   const entries = student.writtenExams || [];
   if(!entries.length){
-    list.innerHTML = '<div class="empty-state">No written examinations logged yet.</div>';
+    list.innerHTML = '<div class="empty-state">No written exams logged.</div>';
     return;
   }
   const sorted = [...entries].sort((a,b)=> new Date(b.date) - new Date(a.date));
@@ -2862,7 +2590,7 @@ function renderTabWritten(student){
           <div class="exam-title">${esc(ex.title)}</div>
           <div class="exam-date">${esc(ex.date)}</div>
         </div>
-        <span class="exam-result ${ex.status==='pass'?'result-pass':'result-retest'}">${ex.status==='pass' ? ('Passed · ' + esc(ex.score)) : ('Retake Scheduled · ' + esc(ex.score))}</span>
+        <span class="exam-result result-pass">${esc(ex.score)}</span>
       </div>
       <div class="exam-notes">${esc(ex.notes)}</div>
       <div class="exam-examiner">Examiner: ${esc(ex.examiner)}</div>
@@ -2870,7 +2598,6 @@ function renderTabWritten(student){
   `).join('');
 }
 
-/* ---- Tab 5: Certificates ---- */
 function renderTabCerts(student){
   const grid = document.getElementById('certGrid');
   if(!student.certificates.length){
@@ -2879,7 +2606,6 @@ function renderTabCerts(student){
   }
   grid.innerHTML = student.certificates.map(c=>`
     <div class="cert-card" data-cert="${esc(c.id)}">
-      <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
       <div class="seal seal-sm" style="margin:0 auto;">${esc(sashInitial(student.sash))}</div>
       <h4>${esc(c.title)}</h4>
       <div class="sub">Issued ${esc(c.dateIssued)}</div>
@@ -2900,42 +2626,26 @@ function openCertModal(student, cert){
     <button class="modal-close" id="certModalClose">✕</button>
     <div id="printArea" class="cert-full">
       <div class="frame">
-        <div class="seal seal-lg" style="margin:0 auto 14px;">${esc(sashInitial(student.sash))}</div>
-        <div class="eyebrow2">Tulsa Kung Fu</div>
+        <div class="seal seal-lg" style="margin:0 auto 12px;">${esc(sashInitial(student.sash))}</div>
         <h2>${esc(cert.title)}</h2>
-        <div class="to">This certifies that</div>
         <div class="name-line">${esc(student.name)}</div>
-        <div class="desc">has fulfilled the requirements of ${esc(cert.sash)} within the traditional curriculum of Tulsa Kung Fu, examined and approved under the lineage of Sifu Ray Hildreth and Sifu Kelan Hightower.</div>
-        <div class="verify-id">Verification ID: ${esc(cert.verificationId)}</div>
-        <div class="sigrow">
-          <div class="sigblock"><strong>Sifu Kelan Hightower</strong>Head Instructor</div>
-          <div class="sigblock"><strong>${esc(cert.dateIssued)}</strong>Date Issued</div>
-          <div class="sigblock"><strong>Sifu Ray Hildreth</strong>Lineage Master</div>
-        </div>
+        <div class="desc">Fulfilled requirements of ${esc(cert.sash)} under the lineage of Sifu Ray Hildreth & Sifu Kelan Hightower.</div>
+        <div class="verify-id">ID: ${esc(cert.verificationId)}</div>
       </div>
     </div>
-    <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
-      <button class="btn btn-ghost" id="certPrint">Print / Export PDF</button>
-      <button class="btn btn-gold" id="certShare">Copy Verification Link</button>
+    <div style="display:flex; gap:8px; justify-content:center; margin-top:16px;">
+      <button class="btn btn-ghost" id="certPrint">Print / PDF</button>
     </div>
   `;
   document.getElementById('certModalBackdrop').classList.add('open');
   document.getElementById('certModalClose').addEventListener('click', ()=>document.getElementById('certModalBackdrop').classList.remove('open'));
   document.getElementById('certPrint').addEventListener('click', ()=> window.print());
-  document.getElementById('certShare').addEventListener('click', (e)=>{
-    const url = `${location.origin}${location.pathname}?verify=${encodeURIComponent(cert.verificationId)}`;
-    navigator.clipboard?.writeText(url).catch(()=>{});
-    e.target.textContent = 'Link Copied ✓';
-    setTimeout(()=> e.target.textContent = 'Copy Verification Link', 1600);
-  });
 }
 document.getElementById('certModalBackdrop').addEventListener('click', e=>{
   if(e.target.id==='certModalBackdrop') e.target.classList.remove('open');
 });
 
-/* =========================================================
-   VERIFY VIEW
-========================================================= */
+/* VERIFY VIEW */
 function runVerify(rawId){
   const id = (rawId||'').trim();
   const resultBox = document.getElementById('verifyResult');
@@ -2944,7 +2654,6 @@ function runVerify(rawId){
     return;
   }
 
-  // check students / certificates
   for(const s of DATA.students){
     if(s.id.toLowerCase() === id.toLowerCase()){
       resultBox.innerHTML = studentVerifyHTML(s);
@@ -2956,7 +2665,6 @@ function runVerify(rawId){
       return;
     }
   }
-  // check lineage nodes
   for(const gen of DATA.lineage){
     const node = gen.nodes.find(n=> (n.verificationId||'').toLowerCase() === id.toLowerCase());
     if(node){
@@ -2965,63 +2673,46 @@ function runVerify(rawId){
     }
   }
 
-  resultBox.innerHTML = `
-    <div class="verify-empty">No record found for <strong style="color:var(--ink)">${esc(id)}</strong>. Check the ID and try again.</div>
-  `;
+  resultBox.innerHTML = `<div class="verify-empty">No record found for <strong>${esc(id)}</strong>.</div>`;
 }
 
 function studentVerifyHTML(s){
   return `
-    <div class="verify-status-row"><span class="seal seal-sm">✓</span><span class="lbl">Verified Student Record</span></div>
     <div class="card">
-      <div class="modal-head" style="margin-bottom:10px;">
-        <div class="seal">${esc(sashInitial(s.sash))}</div>
-        <div><h3 style="font-size:18px;">${esc(s.name)}</h3><div class="role">${esc(SASH_LABEL[s.sash])}</div></div>
-      </div>
+      <h3>${esc(s.name)}</h3>
       <div class="meta-row"><span>Student ID</span><span>${esc(s.id)}</span></div>
-      <div class="meta-row"><span>Status</span><span>${s.status==='active'?'Active — Registered':'On Hold'}</span></div>
-      <div class="meta-row"><span>Association</span><span>${esc(s.assoc)}</span></div>
-      <div class="meta-row"><span>Enrolled</span><span>${esc(s.joined)}</span></div>
+      <div class="meta-row"><span>Rank</span><span>${esc(SASH_LABEL[s.sash])}</span></div>
+      <div class="meta-row"><span>Status</span><span>${s.status==='active'?'Active':'Hold'}</span></div>
     </div>
   `;
 }
 function certVerifyHTML(s, cert){
   return `
-    <div class="verify-status-row"><span class="seal seal-sm">✓</span><span class="lbl">Verified Certificate</span></div>
     <div class="card">
-      <div class="modal-head" style="margin-bottom:10px;">
-        <div class="seal">${esc(sashInitial(s.sash))}</div>
-        <div><h3 style="font-size:18px;">${esc(cert.title)}</h3><div class="role">Issued to ${esc(s.name)}</div></div>
-      </div>
+      <h3>${esc(cert.title)}</h3>
+      <div class="meta-row"><span>Issued To</span><span>${esc(s.name)}</span></div>
       <div class="meta-row"><span>Verification ID</span><span>${esc(cert.verificationId)}</span></div>
       <div class="meta-row"><span>Date Issued</span><span>${esc(cert.dateIssued)}</span></div>
-      <div class="meta-row"><span>Rank</span><span>${esc(cert.sash)}</span></div>
     </div>
   `;
 }
 function lineageVerifyHTML(node){
   return `
-    <div class="verify-status-row"><span class="seal seal-sm">✓</span><span class="lbl">Verified Lineage Record</span></div>
     <div class="card">
-      <div class="modal-head" style="margin-bottom:10px;">
-        <div class="seal">${esc(sashInitial(node.sash))}</div>
-        <div><h3 style="font-size:18px;">${esc(node.name)}</h3><div class="role">${esc(node.role)}</div></div>
-      </div>
+      <h3>${esc(node.name)}</h3>
+      <div class="meta-row"><span>Role</span><span>${esc(node.role)}</span></div>
       <div class="meta-row"><span>Verification ID</span><span>${esc(node.verificationId)}</span></div>
-      <div class="meta-row"><span>Rank</span><span>${esc(SASH_LABEL[node.sash]||node.sash)}</span></div>
     </div>
   `;
 }
 document.getElementById('verifyBtn').addEventListener('click', ()=> runVerify(document.getElementById('verifyInput').value));
 document.getElementById('verifyInput').addEventListener('keydown', e=>{ if(e.key==='Enter') runVerify(e.target.value); });
 
-/* =========================================================
-   INIT — support /?verify=ID deep link
-========================================================= */
+/* INIT */
 (function init(){
   document.getElementById('resetDataLink').addEventListener('click', (e)=>{
     e.preventDefault();
-    if(confirm('Reset all demo data back to the original sample students and lineage? This clears any journal entries or progress you\'ve edited.')){
+    if(confirm('Reset all demo data back to defaults?')){
       localStorage.removeItem(STORAGE_KEY);
       location.reload();
     }
